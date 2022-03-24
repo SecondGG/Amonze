@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from app_amonze import views
 
 urlpatterns = [
+    path('', views.home, name = 'home'),
+    path('marketplace', views.marketplace, name  = 'marketplace'),
+    path('item/<int:item_id>', views.item,  name = 'item'),
     path('admin/', admin.site.urls),
+
 ]
