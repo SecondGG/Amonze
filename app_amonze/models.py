@@ -15,7 +15,7 @@ class Customer (models.Model):
 class Item (models.Model):
     item_id = models.BigAutoField(primary_key=True)
     item_name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
+    description = models.TextField()
     price = models.PositiveIntegerField()
     def __str__(self):
         return "%s %s"%(self.pk, self.item_name)
