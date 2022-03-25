@@ -14,9 +14,7 @@ def item(request, item_id):
     return render(request, 'item.html', context={'item_id': item_id})
 
 def register(request):
-    if request.POST:
-        print(request.POST)
-        return HttpResponse(reverse('register_detail'))
+    return render(request, 'register.html')
     
 
 def register_detail(request):
