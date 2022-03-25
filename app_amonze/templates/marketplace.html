@@ -8,14 +8,20 @@
     <h1>
         Marketplace
     </h1>
+
+    {% for item in items %}
+
+    {% if item.item_id == 1 %}
      <div>
         <img src="{% static 'images/1.png' %}">
-    <h2>item001</h2>
+    <h2>{{ item.item_name }}</h2>
      </div>
+
+    {% endif %}
      <div>
         <img src="{% static 'images/2.png' %}">
     <h2>item001</h2>
      </div>
-
+    {% endfor %}
 </body>
 </html>
