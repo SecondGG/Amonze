@@ -8,7 +8,7 @@ class Customer (models.Model):
     date_of_birth = models.DateField()
     email = models.EmailField()
     address = models.CharField(max_length=100)
-    postcode = models.IntegerField(max_length=5)
+    postcode = models.CharField(max_length=5)
     def __str__(self):
         return "%s %s %s"%(self.pk, self.username, self.firstname)
 
