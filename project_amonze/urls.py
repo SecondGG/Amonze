@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from unicodedata import name
 from django.contrib import admin
 from django.urls import path
 from app_amonze import views
@@ -22,5 +23,13 @@ urlpatterns = [
     path('marketplace', views.marketplace, name  = 'marketplace'),
     path('item/<int:item_id>', views.item,  name = 'item'),
     path('admin/', admin.site.urls),
+    path('register', views.register, name = 'register'),
+    path('register_detail', views.register_detail, name = 'register_detail'),
+   
 
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
