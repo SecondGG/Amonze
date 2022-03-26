@@ -11,7 +11,7 @@
             font-family: 'Poppins', sans-serif;
             font-size: 32px;
             font-weight: 400;
-            background: #000000;
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
         }
 
         .header {
@@ -21,7 +21,7 @@
             margin-top: 25px;
             align-items: center;
             place-content: space-between;
-            
+
         }
 
         .image_wrapper {
@@ -32,10 +32,10 @@
         .image_wrapper a {
             font-size: 24px;
             font-weight: 300;
-            color:rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.8);
             text-align: center;
             margin-left: 25px;
-            letter-spacing: 0.05em; 
+            letter-spacing: 0.05em;
             text-shadow: 0 0 80px rgba(166, 153, 234, 0.7), 0 0 32px rgba(88, 93, 192, 0.7);
         }
 
@@ -64,8 +64,8 @@
         }
 
         .signup {
-            background-color: rgba(88, 93, 192,0.5);
-            border: 1px solid rgba(166, 153, 234,0.55);
+            background-color: rgba(88, 93, 192, 0.5);
+            border: 1px solid rgba(166, 153, 234, 0.55);
             border-radius: 20px;
             color: rgba(255, 255, 255, 0.9);
             font-size: 18px;
@@ -77,40 +77,53 @@
         }
 
         .signup:hover {
-            background-color: rgba(88, 93, 192,0.75);
-            border: 1px solid rgba(166, 153, 234,0.80);
+            background-color: rgba(88, 93, 192, 0.75);
+            border: 1px solid rgba(166, 153, 234, 0.80);
             color: rgba(255, 255, 255, 1);
-            box-shadow: rgba(166, 153, 234,0.5) 0px 0px 20px 0px;
+            box-shadow: rgba(166, 153, 234, 0.5) 0px 0px 20px 0px;
         }
 
         .content {
-            display: flex;  
+            display: flex;
             height: 89vh;
-            background-image: linear-gradient(to top, rgba(23, 21, 55, 0.4), rgba(0, 0, 0, 1));
             place-content: center;
+            place-items: center;
+            align-items: center;
         }
 
         .text_wrapper {
             position: fixed;
-            bottom: 600px;
+            bottom: 630px;
+            text-align: center;
+            line-height: 1;
         }
 
-        .text_wrapper p{
+        .text_wrapper p {
             color: white;
             font-size: 52px;
             font-weight: 700;
             text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
         }
-    
+
+        .description {
+            position: relative;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+            bottom: 20px;
+            line-height: 1rem;
+            font-weight: 300;
+        }
+
         .explore_wrapper {
             position: fixed;
             place-self: center;
-            top: 800px;
+            top: 830px;
         }
 
         .explore_wrapper a {
             text-align: center;
-            background: linear-gradient(to left, rgb(88, 93, 192), rgba(166, 153, 234, 0.5));;
+            background: linear-gradient(to left, rgb(88, 93, 192), rgba(166, 153, 234, 0.5));
+            ;
             border-radius: 20px;
             font-weight: 600;
             color: white;
@@ -119,14 +132,92 @@
             padding: 8px 42px;
             margin-right: 20px;
             letter-spacing: 0.05em;
-            box-shadow: rgba(166, 153, 234,0.2) 0px 0px 20px 0px
+            box-shadow: rgba(166, 153, 234, 0.2) 0px 0px 20px 0px
         }
 
         .explore_wrapper a:hover {
-            background-color: rgba(88, 93, 192,0.5);
+            background-color: rgba(88, 93, 192, 0.5);
             color: rgba(255, 255, 255, 1);
             box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 30px 0px;
         }
+
+        .collection {
+            display: flex;
+        }
+
+        .image1_wrapper {
+            position: relative;
+            z-index: 5;
+            top: 40px;
+        }
+
+        .image1 {
+            height: 400px;
+            border-radius: 20px;
+            box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 30px 0px;
+            transition: all 0.3s ease;
+        }
+
+        .image1:hover {
+            height: 420px;
+            box-shadow: rgba(166, 153, 234, 0.7) 0px 0px 30px 0px;
+        }
+
+        .image2_wrapper {
+            position: fixed;
+            z-index: 4;
+            right: 500px;
+            top: 370px;
+            transition: all 0.3s ease;
+        }
+
+        .image2_wrapper:hover {
+            position: fixed;;
+            right: 480px;
+            top: 365px;
+            z-index: 3;
+        }
+
+        .image2 {
+            height: 350px;
+            border-radius: 20px;
+            box-shadow: rgba(255, 146, 96, 0.4) 0px 0px 30px 0px;
+            transition: all 0.3s ease;
+        }
+
+        .image2:hover {
+            height: 360px;
+            box-shadow: rgba(255, 146, 96, 0.6) 0px 0px 30px 0px;
+        }
+
+        .image3_wrapper {
+            position: fixed;;
+            left: 500px;
+            top: 370px;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .image3_wrapper:hover {
+            position: fixed;;
+            left: 480px;
+            top: 365px;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .image3 {
+            height: 350px;
+            border-radius: 20px;
+            box-shadow: rgba(255, 212, 93, 0.4) 0px 0px 30px 0px;
+            transition: all 0.3s ease;
+        }
+
+        .image3:hover {
+            height: 360px;
+            box-shadow: rgba(255, 212, 93, 0.6) 0px 0px 30px 0px;
+        }
+
 
     </style>
 </head>
@@ -147,7 +238,20 @@
 
     <div class="content">
         <div class="text_wrapper">
-            <p>WELCOME TO OUR MARKETPLACE</p>  
+            <p>WELCOME TO OUR MARKETPLACE</p>
+            <a class="description">Amonze is the DSI's biggest puppies NFTs marketplace <br>
+            because we are the only one in the DSI that making this kind of stuff.</a>
+        </div>
+        <div class="collection">
+            <div class="image1_wrapper">
+                <img class="image1" src="media/images/1.png" />
+            </div>
+            <div class="image2_wrapper">
+                <img class="image2" src="media/images/2.png" />
+            </div>
+            <div class="image3_wrapper">
+                <img class="image3" src="media/images/3.png" />
+            </div>
         </div>
         <div class="explore_wrapper">
             <a class="explore" href="/marketplace">Explore</a>
