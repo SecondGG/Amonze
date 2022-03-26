@@ -15,6 +15,7 @@ class Customer (models.Model):
 class Item (models.Model):
     item_id = models.BigAutoField(primary_key=True)
     item_name = models.CharField(max_length=50)
+    item_image = models.ImageField(null=True)
     description = models.TextField()
     price = models.PositiveIntegerField()
     def __str__(self):
