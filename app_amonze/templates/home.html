@@ -10,77 +10,151 @@
         body {
             font-family: 'Poppins', sans-serif;
             font-size: 32px;
-            font-weight: 500;
+            font-weight: 400;
             background: #000000;
         }
 
-        .topright_wrapper {
+        .header {
             display: flex;
             flex-wrap: wrap;
-            place-content: end;
             margin: 10px;
-            margin-top: 20px;
+            margin-top: 25px;
+            align-items: center;
+            place-content: space-between;
+            
         }
 
         .image_wrapper {
-            place-content: start;
+            display: flex;
+            align-items: center;
+        }
+
+        .image_wrapper a {
+            font-size: 24px;
+            font-weight: 300;
+            color:rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-left: 25px;
+            letter-spacing: 0.05em; 
+            text-shadow: 0 0 80px rgba(166, 153, 234, 0.7), 0 0 32px rgba(88, 93, 192, 0.7);
         }
 
         .logo {
-            place-content: start;
-            height: 40px;
-            width: 40px;
+            height: 48px;
+            width: 48px;
+            margin-left: 10px;
+            filter: drop-shadow(0px 0px 10px rgba(166, 153, 234, 0.35));
         }
 
-        .login_wrapper {
-            margin-right: 35px;
+        .login_and_signup {
             padding-bottom: 10px;
+            right: 50px;
         }
 
-        .login_wrapper a {
+        .login {
+            margin-right: 20px;
             text-decoration: none;
-            color: white;
             font-size: 18px;
             margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        .signup_wrapper {
-            display: block;
-            background: #585DC0;
-            border-radius: 13.5px;
-            width: 135px;
-            height: 35px;
-            align-self: center;
-            margin-right: 10px;
+        .login:hover {
+            color: rgba(255, 255, 255, 1);
         }
 
-        .signup_wrapper a {
-            color: white;
-            font-size: 16px;
+        .signup {
+            background-color: rgba(88, 93, 192,0.5);
+            border: 1px solid rgba(166, 153, 234,0.55);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
             text-align: center;
             text-decoration: none;
-            display: flex;
-            align-self: center;
-            align-items: center;
-            text-align: center;
-            padding-left: 36px;
-            padding-top: 4px;
+            padding: 6px 28px;
+            margin-left: 15px;
+            margin-right: 20px;
         }
+
+        .signup:hover {
+            background-color: rgba(88, 93, 192,0.75);
+            border: 1px solid rgba(166, 153, 234,0.80);
+            color: rgba(255, 255, 255, 1);
+            box-shadow: rgba(166, 153, 234,0.5) 0px 0px 20px 0px;
+        }
+
+        .content {
+            display: flex;  
+            height: 88.5vh;
+            background-image: linear-gradient(to top, rgba(23, 21, 55, 0.4), rgba(0, 0, 0, 1));
+            place-content: center;
+
+        }
+
+        .text_wrapper {
+            position: fixed;
+            bottom: 600px;
+        }
+
+        .text_wrapper p{
+            color: white;
+            font-size: 52px;
+            font-weight: 700;
+            text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
+        }
+    
+        .explore_wrapper {
+            position: fixed;
+            place-self: center;
+            top: 800px;
+        }
+
+        .explore_wrapper a {
+            text-align: center;
+            background: linear-gradient(to left, rgb(88, 93, 192), rgba(166, 153, 234, 0.5));;
+            border-radius: 20px;
+            font-weight: 600;
+            color: white;
+            font-size: 28px;
+            text-decoration: none;
+            padding: 8px 42px;
+            margin-right: 20px;
+            letter-spacing: 0.05em;
+            box-shadow: rgba(166, 153, 234,0.2) 0px 0px 20px 0px
+        }
+
+        .explore_wrapper a:hover {
+            background-color: rgba(88, 93, 192,0.5);
+            color: rgba(255, 255, 255, 1);
+            box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 30px 0px;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class="topright_wrapper">
+    <div class="header">
         <div class="image_wrapper">
             <img class="logo" src="media/images/logo.png" alt="logo" />
+            <a>Amonze</a>
         </div>
-        <div class="login_wrapper">
-            <a href="#">Log in</a>
-        </div>
-        <div class="signup_wrapper">
-            <a href="#">Sign up</a>
+        <div class="topright_wrapper">
+            <div class="login_and_signup">
+                <a class="login btn-glow" href="#">Log in</a>
+                <a class="signup btn-glow" href="#">Sign up</a>
+            </div>
         </div>
     </div>
+
+    <div class="content">
+        <div class="text_wrapper">
+            <p>WELCOME TO OUR MARKETPLACE</p>  
+        </div>
+        <div class="explore_wrapper">
+            <a class="explore" href="/marketplace">Explore</a>
+        </div>
+    </div>
+
 </body>
 
 </html>
