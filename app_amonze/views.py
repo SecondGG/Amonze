@@ -22,3 +22,6 @@ def register(request):
 
 def register_detail(request):
     return render(request, 'register_detail')    
+
+def login(request):
+    return login(request, 'login.html')   
