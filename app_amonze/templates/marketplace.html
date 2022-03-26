@@ -14,7 +14,8 @@
     {% if item.item_id == 1 %}
      <div>
         <img src="{% static 'images/1.png' %}">
-    <h2>{{ item.item_name }}</h2>
+    <h2> <a href = "item/{{item.item_id}}"> {{ item.item_name }} </a> </h2>
+    <p> Price: {{item.price}} USD </p>
      </div>
 
     {% endif %}
