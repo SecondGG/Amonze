@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <title>Marketplace</title>
 </head>
+
 <body>
     <h1>
         Marketplace
     </h1>
 
     {% for item in items %}
-
     {% if item.item_id == 1 %}
-     <div>
+    
+    <div>
         <img src="{% static 'images/1.png' %}">
-    <h2> <a href = "item/{{item.item_id}}"> {{ item.item_name }} </a> </h2>
-    <p> Price: {{item.price}} USD </p>
-     </div>
+        <h2> <a href="item/{{item.item_id}}"> {{ item.item_name }} </a> </h2>
+        <p> Price: {{item.price}} USD </p>
+    </div>
 
     {% endif %}
-     <div>
-        <img src="{% static 'images/2.png' %}">
-    <h2>item002</h2>
-     </div>
     {% endfor %}
+
+    <div>
+        <img src="{% static 'images/2.png' %}">
+        <h2>item002</h2>
+    </div>
+
 </body>
+
 </html>
