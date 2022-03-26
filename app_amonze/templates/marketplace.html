@@ -3,25 +3,145 @@
 <html lang="en">
 
 <head>
-    <title>Marketplace</title>
+    <title>Amonze | Marketplace</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1)); 
+            height: 96vh;
+        }
+
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px;
+            margin-top: 25px;
+            align-items: center;
+            place-content: space-between;
+
+        }
+
+        .image_wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .image_wrapper a {
+            font-size: 24px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-left: 25px;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 80px rgba(166, 153, 234, 0.7), 0 0 32px rgba(88, 93, 192, 0.7);
+        }
+
+        .logo {
+            height: 48px;
+            width: 48px;
+            margin-left: 10px;
+            filter: drop-shadow(0px 0px 10px rgba(166, 153, 234, 0.35));
+        }
+
+        .login_and_signup {
+            padding-bottom: 10px;
+            right: 50px;
+        }
+
+        .login {
+            margin-right: 20px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .login:hover {
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .signup {
+            background-color: rgba(88, 93, 192, 0.5);
+            border: 1px solid rgba(166, 153, 234, 0.55);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            text-align: center;
+            text-decoration: none;
+            padding: 6px 28px;
+            margin-left: 15px;
+            margin-right: 20px;
+        }
+
+        .signup:hover {
+            background-color: rgba(88, 93, 192, 0.75);
+            border: 1px solid rgba(166, 153, 234, 0.80);
+            color: rgba(255, 255, 255, 1);
+            box-shadow: rgba(166, 153, 234, 0.5) 0px 0px 20px 0px;
+        }   
+
+        .market_header {
+            display: flex;
+            color: white;
+            place-content: center;
+        }
+
+        .market_header h2 {
+            font-weight: 600;
+            font-size: 52px;
+            text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
+            padding-bottom: 40px;
+        }
+
+        .market_container {
+            display: flex;
+        }
+
+        .item_wrapper {
+            margin: 15px;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 25px;
+        }
+
+        .item_img {
+            height: 300px;
+            border-radius: 25px;
+        }
+    </style>
+
 </head>
 
 <body>
-    <h1>
-        Marketplace
-    </h1>
-
-    {% for item in items %}
-    {% if item.item_id == 1 %}
-    
-    <div>
-        <img src="{{ item.item_image.url }}">
-        <h2> <a href="item/{{item.item_id}}"> {{ item.item_name }} </a> </h2>
-        <p> Price: {{item.price}} USD </p>
+    <div class="header">
+        <div class="image_wrapper">
+            <img class="logo" src="media/images/logo.png" alt="logo" />
+            <a>Amonze</a>
+        </div>
+        <div class="topright_wrapper">
+            <div class="login_and_signup">
+                <a class="login btn-glow" href="#">Log in</a>
+                <a class="signup btn-glow" href="/register">Sign up</a>
+            </div>
+        </div>
+    </div>
+    <div class="market_header">
+        <h2>MARKETPLACE</h2>
     </div>
 
-    {% endif %}
-    {% endfor %}
+    <div class="market_container">
+        {% for item in items %}
+
+        <div class="item_wrapper">
+            <img class="item_img" src="{{ item.item_image.url }}">
+            <div class="item_desc">
+                <h2> <a href="item/{{item.item_id}}"> {{ item.item_name }} </a> </h2>
+                <p> Price: {{item.price}} USD </p>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
 
 </body>
 
