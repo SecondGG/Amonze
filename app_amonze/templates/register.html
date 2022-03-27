@@ -28,23 +28,20 @@
 
 <body>
     <div class="head_wrapper">
-        <h2>Register to shopping</h2>
+        <h2>Register to adopt your cutie little puppies</h2>
     </div>
     <div class="form_wrapper">
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
         <div class="form_wrapper">
             <div class="username">
-                <label>Username</label>
-                <input type="text" name="username">
+                <input type="text" name="username" placeholder="Username">
             </div>
             <div class="email">
-                <label>Email</label>
-                <input type="email" name="email">
+                <input type="email" name="email" placeholder="Email">
             </div>
             <div class="password">
-                <label>Password</label>
-                <input type="password">
+                <input type="password" placeholder="Password">
             </div>
         
         <div class="continue_wrapper">
