@@ -30,25 +30,19 @@
         }
 
         .market_container {
+            padding: 5%;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        .item_wrapper {
-            margin: 5%;
-            background: white;
-            border-radius: 25px;
-            width: 30%;
+        .item_wrapper{
+            margin: 25px;
         }
 
         .item_img {
             width: 100%;
             border-radius: 25px;
-        }
-
-        .item_desc {
-            margin-bottom: 5%;
         }
 
         .image_wrapper {
@@ -74,6 +68,49 @@
         a:visited {
             text-decoration: none;
         }
+
+        @media (min-width: 300px) and (max-width: 500px) {
+
+            .item_wrapper {
+                background: white;
+                border-radius: 25px;
+                width: 35%;
+            }
+
+            .item_desc {
+                margin-bottom: 5%;
+                font-size: 20px;
+            }
+
+        }
+
+        @media (min-width: 500px) and (max-width: 1024px){
+
+            .item_wrapper {
+                background: white;
+                border-radius: 25px;
+                width: 24%;
+            }
+
+            .item_desc {
+                margin-bottom: 5%;
+                font-size: 18px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+
+            .item_wrapper {
+                background: white;
+                border-radius: 25px;
+                width: 20%;
+            }
+
+            .item_desc {
+                margin-bottom: 5%;
+                font-size: 16px;
+            }
+        }
     </style>
 
 </head>
@@ -90,7 +127,7 @@
                 <img class="item_img" src="{{ item.item_image.url }}">
                 <div class="item_desc">
                     <ul>
-                        <h2 style="color: black;"> {{ item.item_name }} </h2>
+                        <h3 style="color: black;"> {{ item.item_name }} </h3>
                         <p style="color: #585DC0;"> ${{item.price}} </p>
                     </ul>
                 </div>
