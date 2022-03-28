@@ -17,7 +17,7 @@ class Item (models.Model):
     item_name = models.CharField(max_length=50)
     item_image = models.ImageField(null=True)
     description = models.TextField(default="No description")
-    price = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     def __str__(self):
         return "%s %s"%(self.pk, self.item_name)
 
