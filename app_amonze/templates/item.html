@@ -1,12 +1,26 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
-    <title>Item {{ item_id }} จ้าาา</title>
+    <title>Item {{ item_name }} จ้าาา</title>
+
+    <style>
+        h2 {
+            font-size: 100px;
+        }
+        img {
+            height: 400px;
+        }
+    </style>
 </head>
 
 <body>
     <h2>Item {{ item_id }} จ้าาา</h2>
+    <h2>Item {{ item_name }} จ้าาา</h2>
+    <div class="image_wrapper">
+        <img class="item_img" src="/media/images/{{ item_id }}.png">
+    </div>
 </body>
 
 </html>
