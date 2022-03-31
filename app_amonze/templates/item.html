@@ -7,9 +7,22 @@
     <title>&#6158; Amonze | {{ item.item_name }}</title>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 400;
+            background-image: linear-gradient(to top, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        }
+
         h2 {
             font-size: 100px;
         }
+
         img {
             height: 400px;
         }
@@ -17,10 +30,25 @@
 </head>
 
 <body>
-    <h2>Item {{ item.item_id }} จ้าาา</h2>
-    <h2>Item {{ item.item_name }} จ้าาา</h2>
-    <div class="image_wrapper">
-        <img class="item_img" src="/media/{{ item.item_id }}.png">
+
+    <div class="item_container">
+        <div class="image_wrapper">
+            <img class="item_img" src="/media/{{ item.item_id }}.png">
+        </div>
+        <div class="name_wrapper">
+            <div class="name">
+                {{ item.item_name }}
+            </div>
+        </div>
+        <div class="price_wrapper">
+            ${{ item.price }}
+        </div>
+    </div>
+    <div class="desc_container">
+        <div class="desc_wrapper">
+            <p>Description :</p>
+            <div class="desc">{{ item.description }}</div>
+        </div>
     </div>
 </body>
 
