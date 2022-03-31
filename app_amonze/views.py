@@ -14,7 +14,9 @@ def marketplace(request):
     return render(request, 'marketplace.html', context)
 
 def item(request, item_id):
-    return render(request, 'item.html', context={'item_id': item_id})
+    item = Item.objects.get(item_id=item_id)
+    context={'item': item}
+    return render(request, 'item.html', context)
 
 def register(request):
     return render(request, 'register.html')
