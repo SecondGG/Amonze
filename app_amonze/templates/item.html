@@ -1,12 +1,103 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
-    <title>Item {{ item_id }} จ้าาา</title>
+    <link rel="shortcut icon" href="/media/images/favicon.ico" />
+    <title>&#6158; Amonze | {{ item.item_name }}</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 400;
+            background-color: black;
+            display: flex;
+            flex-wrap: wrap;
+            place-content: center;
+        }
+
+        .item_container {
+            width: max-content;
+            background-color: white;
+            color: black;
+            border-radius: 0px 0px 60px 60px;
+
+        }
+
+        .image_wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            place-content: center;
+            margin-bottom: 30px;
+        }
+
+        img {
+            width: 100%;
+            box-shadow: inset 0px -2px 200px rgba(0, 0, 0, 1);
+        }
+
+        .name_wrapper p {
+            margin-left: 50px;
+            font-size: 40px;
+        }
+
+        .price_wrapper {
+            margin-bottom: 40px;
+        }
+
+        .price_wrapper p {
+            margin-left: 50px;
+            font-weight: 600;
+            color: rgba(88, 93, 192, 1);
+        }
+
+        .desc_container {
+            margin-top: 50px;
+            width: max-content;
+            background-color: white;
+            color: black;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            height: max-content;
+            padding-bottom: 30%;
+        }
+
+        .desc_wrapper {
+            margin: 50px;
+            font-size: 20px;
+        }
+
+        .desc_wrapper p{
+            font-weight: 600;
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Item {{ item_id }} จ้าาา</h2>
+
+    <div class="item_container">
+        <div class="image_wrapper">
+            <img class="item_img" src="/media/{{ item.item_id }}.png">
+        </div>
+        <div class="name_wrapper">
+                <p>{{ item.item_name }}</p>
+        </div>
+        <div class="price_wrapper">
+           <p> ${{ item.price }} </p>
+        </div>
+    </div>
+    <div class="desc_container">
+        <div class="desc_wrapper">
+            <p>Description :</p>
+            <div class="desc">&ensp;&ensp;{{ item.description }}</div>
+        </div>
+    </div>
+
 </body>
 
 </html>

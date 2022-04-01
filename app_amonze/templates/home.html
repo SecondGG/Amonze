@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>Amonze | Home</title>
+    <link rel="shortcut icon" href="/media/images/favicon.ico" />
+    <title>&#6158; Amonze | Home</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -11,7 +12,8 @@
             font-family: 'Poppins', sans-serif;
             font-size: 32px;
             font-weight: 400;
-            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+            /* background-image: linear-gradient(to top, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1)); */
+            background-color: black;
         }
 
         .header {
@@ -20,40 +22,19 @@
             margin: 10px;
             margin-top: 25px;
             align-items: center;
-            place-content: space-between;
-        }
-
-        .image_wrapper {
-            display: flex;
-            align-items: center;
-        }
-
-        .image_wrapper a {
-            font-size: 24px;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            margin-left: 25px;
-            letter-spacing: 0.05em;
-            text-shadow: 0 0 80px rgba(166, 153, 234, 0.7), 0 0 32px rgba(88, 93, 192, 0.7);
-        }
-
-        .logo {
-            height: 48px;
-            width: 48px;
-            margin-left: 10px;
-            filter: drop-shadow(0px 0px 10px rgba(166, 153, 234, 0.35));
+            place-content: end;
         }
 
         .login_and_signup {
             padding-bottom: 10px;
-            right: 50px;
+            font-weight: 500;
+            padding-top: 2vh;
         }
 
         .login {
-            margin-right: 20px;
+            margin-right: 5vw;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 2vh;
             margin-bottom: 10px;
             color: rgba(255, 255, 255, 0.9);
         }
@@ -63,28 +44,22 @@
         }
 
         .signup {
-            background-color: rgba(88, 93, 192, 0.5);
-            border: 1px solid rgba(166, 153, 234, 0.55);
-            border-radius: 20px;
+            background-color: rgba(88, 93, 192, 1);
+            border: 1px solid rgba(166, 153, 234, 0.8);
+            border-radius: 60px;
             color: rgba(255, 255, 255, 0.9);
-            font-size: 18px;
+            font-size: 2vh;
             text-align: center;
             text-decoration: none;
-            padding: 6px 28px;
+            padding: 0.5vh 6vw;
             margin-left: 15px;
-            margin-right: 20px;
-        }
-
-        .signup:hover {
-            background-color: rgba(88, 93, 192, 0.75);
-            border: 1px solid rgba(166, 153, 234, 0.80);
-            color: rgba(255, 255, 255, 1);
-            box-shadow: rgba(166, 153, 234, 0.5) 0px 0px 20px 0px;
+            margin-right: 3vw;
+            box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 50px 0px
         }
 
         .content {
             display: flex;
-            height: 89vh;
+            height: 90vh;
             place-content: center;
             place-items: center;
             align-items: center;
@@ -94,47 +69,73 @@
         }
 
         .text_wrapper {
+            display: flex;
             position: absolute;
-            bottom: 63vh;
+            bottom: 64vh;
             text-align: center;
-            line-height: 1;
+            line-height: 1.5;
         }
 
         .text_wrapper p {
+            text-align: start;
+            padding-left: 7vw;
             color: white;
-            font-size: 52px;
+            font-size: 3.7vh;
             font-weight: 700;
             text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
         }
 
         .description {
-            position: relative;
+            position: absolute;
+            text-align: start;
             color: rgba(255, 255, 255, 0.6);
-            font-size: 20px;
-            width: 90vh;
-            top:-3vh;
-            line-height: 1.5em;
+            font-size: 1.8vh;
+            line-height: 1.4em;
             font-weight: 300;
+            right: 25vw;
+            padding-left: 7vw;
+            top: 17vh;
+        }
+
+        .background {
+            position: absolute;
+            width: 300px;
+            height: 700px;
+            filter: blur(150px);
+            z-index: -1;
+            top: 15vh;
+            left: 20vw;
+        }
+
+        .background1 {
+            position: absolute;
+            width: 300px;
+            height: 1400px;
+            filter: blur(200px);
+            z-index: -1;
+            top: 10vh;
+            left: 40vw;
+            transform: rotate(20deg);
         }
 
         .explore_wrapper {
             position: absolute;
             place-self: center;
-            top: 89vh;
+            top: 87vh;
         }
 
         .explore_wrapper a {
             text-align: center;
-            background: linear-gradient(to left, rgb(88, 93, 192), rgba(166, 153, 234, 0.5));
-            border-radius: 20px;
-            font-weight: 600;
+            background: rgba(88, 93, 192, 0.7);
+            border: 1px solid rgba(166, 153, 234, 0.8);
+            border-radius: 40px;
+            font-weight: 500;
             color: white;
-            font-size: 28px;
+            font-size: 3vh;
             text-decoration: none;
-            padding: 8px 42px;
-            margin-right: 20px;
+            padding: 0.8vh 20vw;
             letter-spacing: 0.05em;
-            box-shadow: rgba(166, 153, 234, 0.2) 0px 0px 20px 0px
+            box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 50px 0px
         }
 
         .explore_wrapper a:hover {
@@ -142,94 +143,12 @@
             color: rgba(255, 255, 255, 1);
             box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 30px 0px;
         }
-
-        .collection {
-            display: flex;
-        }
-
-        .image1_wrapper {
-            position: relative;
-            place-self: center;
-            transition: all 0.3s ease;
-            z-index: 5;
-            top: 6vh;
-        }
-
-        .image1 {
-            height: 43vh;
-            border-radius: 20px;
-            box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 30px 0px;
-            transition: all 0.3s ease;
-        }
-
-        .image1:hover {
-            height: 45vh;
-            box-shadow: rgba(166, 153, 234, 0.7) 0px 0px 30px 0px;
-        }
-
-        .image2_wrapper {
-            position: absolute;
-            z-index: 4;
-            right: 54vh;
-            top: 41vh;
-            transition: all 0.3s ease;
-        }
-
-        .image2_wrapper:hover {
-            right: 52vh;
-            top: 40vh;
-            z-index: 3;
-        }
-
-        .image2 {
-            height: 37vh;
-            border-radius: 20px;
-            box-shadow: rgba(255, 146, 96, 0.4) 0px 0px 30px 0px;
-            transition: all 0.3s ease;
-        }
-
-        .image2:hover {
-            height: 39vh;
-            box-shadow: rgba(255, 146, 96, 0.6) 0px 0px 30px 0px;
-        }
-
-        .image3_wrapper {
-            position: absolute;
-            left: 54vh;
-            top: 41vh;
-            z-index: 3;
-            transition: all 0.3s ease;
-        }
-
-        .image3_wrapper:hover {
-            left: 52vh;
-            top: 40vh;
-            z-index: 3;
-            transition: all 0.3s ease;
-        }
-
-        .image3 {
-            height: 37vh;
-            border-radius: 20px;
-            box-shadow: rgba(255, 212, 93, 0.4) 0px 0px 30px 0px;
-            transition: all 0.3s ease;
-        }
-
-        .image3:hover {
-            height: 39vh;
-            box-shadow: rgba(255, 212, 93, 0.6) 0px 0px 30px 0px;
-        }
-
-
+        
     </style>
 </head>
 
 <body>
     <div class="header">
-        <div class="image_wrapper">
-            <img class="logo" src="media/images/logo.png" alt="logo" />
-            <a>Amonze</a>
-        </div>
         <div class="topright_wrapper">
             <div class="login_and_signup">
                 <a class="login btn-glow" href="#">Log in</a>
@@ -241,20 +160,13 @@
     <div class="content">
         <div class="text_wrapper">
             <p>WELCOME TO OUR MARKETPLACE</p>
-            <a class="description">Amonze is the DSI's biggest puppies NFTs marketplace <br>
-            because we are the only one in the DSI that making this kind of stuff.</a>
+            <a class="description">Amonze is the DSI's biggest puppies NFTs marketplace
+                because we are the only one.</a>
         </div>
-        <div class="collection">
-            <div class="image1_wrapper">
-                <img class="image1" src="media/images/1.png" />
-            </div>
-            <div class="image2_wrapper">
-                <img class="image2" src="media/images/2.png" />
-            </div>
-            <div class="image3_wrapper">
-                <img class="image3" src="media/images/3.png" />
-            </div>
-        </div>
+
+        <img class="background" src="media/images/banner.jpg" alt="banner" />
+        <img class="background1" src="media/images/banner2.jpg" alt="banner" />
+
         <div class="explore_wrapper">
             <a class="explore" href="/marketplace">Explore</a>
         </div>
