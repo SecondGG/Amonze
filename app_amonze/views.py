@@ -21,7 +21,7 @@ def register(request):
     
 
 def register_detail(request):
-    return render(request, 'register_detail')    
+    return render(request, 'register_detail.html')    
 
 def login(request):
     return login(request, 'login.html')   

@@ -5,11 +5,15 @@
 <head>
     <title>Amonze | Marketplace</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
         body {
             font-family: 'Poppins', sans-serif;
             font-weight: 400;
-            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1)); 
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
             height: 96vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed ;
         }
 
         .header {
@@ -20,21 +24,6 @@
             align-items: center;
             place-content: space-between;
 
-        }
-
-        .image_wrapper {
-            display: flex;
-            align-items: center;
-        }
-
-        .image_wrapper a {
-            font-size: 24px;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            margin-left: 25px;
-            letter-spacing: 0.05em;
-            text-shadow: 0 0 80px rgba(166, 153, 234, 0.7), 0 0 32px rgba(88, 93, 192, 0.7);
         }
 
         .logo {
@@ -79,7 +68,7 @@
             border: 1px solid rgba(166, 153, 234, 0.80);
             color: rgba(255, 255, 255, 1);
             box-shadow: rgba(166, 153, 234, 0.5) 0px 0px 20px 0px;
-        }   
+        }
 
         .market_header {
             display: flex;
@@ -96,18 +85,50 @@
 
         .market_container {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .item_wrapper {
-            margin: 15px;
-            background: rgba(255, 255, 255, 1);
+            margin: 5%;
+            background: white;
             border-radius: 25px;
+            width: 30%;
         }
 
         .item_img {
-            height: 300px;
+            width: 100%;
             border-radius: 25px;
         }
+
+        .item_desc{
+            margin-bottom: 5%;
+        }
+
+        .image_wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .image_wrapper a {
+            display: flex;
+            font-size: 24px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-left: 25px;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 80px rgba(166, 153, 234, 0.7), 0 0 32px rgba(88, 93, 192, 0.7);
+        }
+
+        a:link{
+            text-decoration: none;
+        }
+
+        a:visited{
+            text-decoration: none;
+        }
+
     </style>
 
 </head>
@@ -131,15 +152,17 @@
 
     <div class="market_container">
         {% for item in items %}
-
         <div class="item_wrapper">
-            <img class="item_img" src="{{ item.item_image.url }}">
-            <div class="item_desc">
-                <h2> <a href="item/{{item.item_id}}"> {{ item.item_name }} </a> </h2>
-                <p> Price: {{item.price}} USD </p>
-            </div>
+            <a href="item/{{item.item_id}}">
+                <img class="item_img" src="{{ item.item_image.url }}">
+                <div class="item_desc">
+                    <ul>
+                        <h2 style="color: black;"> {{ item.item_name }} </h2>
+                        <p style="color: #585DC0;"> ${{item.price}} </p>
+                    </ul>
+                </div>
+            </a>
         </div>
-
         {% endfor %}
     </div>
 

@@ -21,7 +21,6 @@
             margin-top: 25px;
             align-items: center;
             place-content: space-between;
-
         }
 
         .image_wrapper {
@@ -89,11 +88,14 @@
             place-content: center;
             place-items: center;
             align-items: center;
+            align-self: center;
+            align-content: center;
+            place-self: center;
         }
 
         .text_wrapper {
-            position: fixed;
-            bottom: 630px;
+            position: absolute;
+            bottom: 63vh;
             text-align: center;
             line-height: 1;
         }
@@ -109,21 +111,21 @@
             position: relative;
             color: rgba(255, 255, 255, 0.6);
             font-size: 20px;
-            bottom: 20px;
-            line-height: 1rem;
+            width: 90vh;
+            top:-3vh;
+            line-height: 1.5em;
             font-weight: 300;
         }
 
         .explore_wrapper {
-            position: fixed;
+            position: absolute;
             place-self: center;
-            top: 830px;
+            top: 89vh;
         }
 
         .explore_wrapper a {
             text-align: center;
             background: linear-gradient(to left, rgb(88, 93, 192), rgba(166, 153, 234, 0.5));
-            ;
             border-radius: 20px;
             font-weight: 600;
             color: white;
@@ -147,74 +149,74 @@
 
         .image1_wrapper {
             position: relative;
+            place-self: center;
+            transition: all 0.3s ease;
             z-index: 5;
-            top: 40px;
+            top: 6vh;
         }
 
         .image1 {
-            height: 400px;
+            height: 43vh;
             border-radius: 20px;
             box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 30px 0px;
             transition: all 0.3s ease;
         }
 
         .image1:hover {
-            height: 420px;
+            height: 45vh;
             box-shadow: rgba(166, 153, 234, 0.7) 0px 0px 30px 0px;
         }
 
         .image2_wrapper {
-            position: fixed;
+            position: absolute;
             z-index: 4;
-            right: 500px;
-            top: 370px;
+            right: 54vh;
+            top: 41vh;
             transition: all 0.3s ease;
         }
 
         .image2_wrapper:hover {
-            position: fixed;;
-            right: 480px;
-            top: 365px;
+            right: 52vh;
+            top: 40vh;
             z-index: 3;
         }
 
         .image2 {
-            height: 350px;
+            height: 37vh;
             border-radius: 20px;
             box-shadow: rgba(255, 146, 96, 0.4) 0px 0px 30px 0px;
             transition: all 0.3s ease;
         }
 
         .image2:hover {
-            height: 360px;
+            height: 39vh;
             box-shadow: rgba(255, 146, 96, 0.6) 0px 0px 30px 0px;
         }
 
         .image3_wrapper {
-            position: fixed;;
-            left: 500px;
-            top: 370px;
+            position: absolute;
+            left: 54vh;
+            top: 41vh;
             z-index: 3;
             transition: all 0.3s ease;
         }
 
         .image3_wrapper:hover {
-            position: fixed;;
-            left: 480px;
-            top: 365px;
+            left: 52vh;
+            top: 40vh;
             z-index: 3;
             transition: all 0.3s ease;
         }
 
         .image3 {
-            height: 350px;
+            height: 37vh;
             border-radius: 20px;
             box-shadow: rgba(255, 212, 93, 0.4) 0px 0px 30px 0px;
             transition: all 0.3s ease;
         }
 
         .image3:hover {
-            height: 360px;
+            height: 39vh;
             box-shadow: rgba(255, 212, 93, 0.6) 0px 0px 30px 0px;
         }
 
