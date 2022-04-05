@@ -15,8 +15,10 @@ Including another URLconf
 """
 from unicodedata import name
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from app_amonze import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name = 'home'),
@@ -25,11 +27,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register', views.register, name = 'register'),
     path('register_detail', views.register_detail, name = 'register_detail'),
-   path('login/', views.login, name = 'login'),
+    path('login/', views.loginPage, name = 'login'),
+    path('logout/', views.logoutUser, name = 'logout'),
+    path('signup/', views.signup, name = 'signup'),
+    path('profile/', views.profile, name = 'profile')
 
 ]
 
-from django.conf import settings
-from django.conf.urls.static import static
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

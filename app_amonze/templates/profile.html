@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <style>
+        .profile-pic{
+            max-width: 200px;
+            max-height:200px;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-warning" href="/marketplace"> &#8592; Back to Marketplace</a>
+			<hr>
+			<h3 style="text-align: center">Account Settings</h3>
+			<hr>
+			<img class="profile-pic" src="{{request.user.customer.profile_pic.url}}" >
+		
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body">
+			
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+                {{form.firstname.label}}
+                {{form.firstname}}
+                {{form.lastname.label}}
+                {{form.lastname}}
+                {{form.date_of_birth.label}}
+                {{form.date_of_birth}}
+                {{form.email.label}}
+                {{form.email}}
+                {{form.address.label}}
+                {{form.address}}
+                {{form.postcode.label}}
+                {{form.postcode}}
+                
+		
+			<input class="btn btn-primary" type="submit" name="Update Information">
+			</form>
+
+        
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

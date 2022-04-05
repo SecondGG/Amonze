@@ -78,11 +78,17 @@
             text-decoration: none;
         }
 
+        .hello {
+            color: white;
+        }
+
     </style>
 
 </head>
 
 <body>
+    <span class="hello">Hello, {{request.user}}</span>
+    <span><a href="/logout">Logout</a></span>
     <div class="market_header">
         <h2>MARKETPLACE</h2>
     </div>

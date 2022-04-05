@@ -1,16 +1,20 @@
+import imp
+from pyexpat import model
 from django.db import models
+from django.contrib.auth.models import User
 
 class Customer (models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     customer_id = models.BigAutoField(primary_key=True)
-    username = models.CharField(max_length=20)
-    firstname = models.CharField(max_length=50)
-    lastname = models.CharField(max_length=50)
-    date_of_birth = models.DateField()
-    email = models.EmailField()
-    address = models.CharField(max_length=100)
-    postcode = models.CharField(max_length=5)
+    firstname = models.CharField(max_length=50, null=True)
+    lastname = models.CharField(max_length=50, null=True)
+    date_of_birth = models.DateField(null=True)
+    email = models.EmailField(unique=True)
+    address = models.CharField(max_length=100,null=True)
+    postcode = models.CharField(max_length=5,null=True)
+    profile_pic = models.ImageField(default="default_profile_pic.png",null=True, blank=True)
     def __str__(self):
-        return "%s %s %s"%(self.pk, self.username, self.firstname)
+        return "%s %s %s"%(self.pk, self.user, self.firstname)
 
 class Item (models.Model):
     item_id = models.BigAutoField(primary_key=True)

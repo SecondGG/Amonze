@@ -2,7 +2,7 @@ from django.contrib import admin
 from app_amonze.models import Customer,Item,Transaction
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['customer_id','username', 'firstname','lastname','date_of_birth','email','address','postcode']
+    list_display = ['customer_id', 'user', 'firstname','lastname','date_of_birth','email','address','postcode']
 
 admin.site.register(Customer,CustomerAdmin)
 
