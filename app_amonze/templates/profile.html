@@ -4,53 +4,133 @@
 
 <head>
     <style>
-        .profile-pic{
-            max-width: 200px;
-            max-height:200px;
-            margin: 0 auto;
-            border-radius: 50%;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: linear-gradient(to top left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+            height: 96vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* background-image: linear-gradient(to top, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1)); */
         }
+
+        .header {
+            margin-top: 2vh;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 40px;
+            color: white;
+        }
+
+        .back_button {
+            font-size: 2vh;
+            text-decoration: none;
+            color: white;
+            margin-left: 2vh;
+        }
+
+        .profile-pic {
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 50%;
+            margin-top: 5vh;
+            margin-left: 2vh;
+            margin-right: 2vh;
+            filter: drop-shadow(0px 0px 3vh rgba(255, 255, 255, 0.35));
+        }
+
+        form {
+            font-size: 2.2vh;
+            color: white;
+        }
+
+        .profile_wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input {
+            font-size: 2.2vh;
+            color: white;
+            background-color: rgba(23, 21, 55, 0) ;
+            border: none;
+            text-align: end;
+        }
+
+        .form_container {
+            padding: 40px;
+            margin: 40px;
+            border-radius: 40px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(23, 21, 55, 0.5);
+            border-radius: 10px;
+        }
+
+        .row input {}
     </style>
 </head>
+
 <body>
 
-<div class="row">
-	<div class="col-md-3">
-		<div class="card card-body">
-			<a class="btn btn-warning" href="/marketplace"> &#8592; Back to Marketplace</a>
-			<hr>
-			<h3 style="text-align: center">Account Settings</h3>
-			<hr>
-			<img class="profile-pic" src="{{request.user.customer.profile_pic.url}}" >
-		
-		</div>
-	</div>
-	<div class="col-md-9">
-		<div class="card card-body">
-			
-			<form method="POST" action="" enctype="multipart/form-data">
-				{% csrf_token %}
-                {{form.firstname.label}}
-                {{form.firstname}}
-                {{form.lastname.label}}
-                {{form.lastname}}
-                {{form.date_of_birth.label}}
-                {{form.date_of_birth}}
-                {{form.email.label}}
-                {{form.email}}
-                {{form.address.label}}
-                {{form.address}}
-                {{form.postcode.label}}
-                {{form.postcode}}
-                
-		
-			<input class="btn btn-primary" type="submit" name="Update Information">
-			</form>
-
-        
-		</div>
-	</div>
-</div>
+    <div class="header">
+        <div class="header_wrapper">
+            <a class="back_button" href="/marketplace">Back</a>
+        </div>
+    </div>
+    <div class="profile_wrapper">
+        <div class="image_wrapper">
+            <img class="profile-pic" src="{{request.user.customer.profile_pic.url}}">
+        </div>
+        <div class="form_container">
+            <div class="form_wrapper">
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!--
+                    <div class="fname">
+                        {{form.firstname.label}}
+                        {{form.firstname}}
+                    </div>
+                    <hr>
+                    {{form.lastname.label}}
+                    {{form.lastname}}
+                    <hr>
+                    {{form.date_of_birth.label}}
+                    {{form.date_of_birth}}
+                    <hr>
+                    {{form.email.label}}
+                    {{form.email}}
+                    <hr>
+                    {{form.address.label}}
+                    {{form.address}}
+                    <hr>
+                    {{form.postcode.label}}
+                    {{form.postcode}}
+                    <hr>
+                    -->
+                    {% for field in form %}
+                    <div class="row">
+                        {{ field.label }}:
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                    <!--
+                <input class="submit_button" type="submit" name="Update Information">
+                -->
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
 
 </body>
+
 </html>
