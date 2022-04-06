@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
@@ -11,24 +12,23 @@
         body {
             font-family: 'Poppins', sans-serif;
             font-weight: 400;
-            /*
             background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
-            height: 96vh;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            */
+            margin: 0;
+            margin-top: 10px;
         }
 
         .container {
             width: 100%;
-            min-height: 100vh;
+            min-height: 95vh;
             padding-left: 8%;
             padding-right: 8%;
             box-sizing: border-box;
             overflow: hidden;
         }
 
-        .navbar{
+        .navbar {
             width: 100%;
             display: flex;
             align-items: center;
@@ -38,173 +38,233 @@
             width: 50px;
             cursor: pointer;
             margin: 30px 0;
-        } 
+        }
 
         nav {
             flex: 1;
             text-align: right;
         }
 
-        nav ul li{
+        nav ul li {
             list-style: none;
             display: inline-block;
             margin-right: 30px;
         }
 
-        nav ul li a{
+        nav ul li a {
             text-decoration: none;
-            color: black;
-            font-size: 20px;
+            color: white;
+            font-size: 18px;
         }
 
-        nav ul li a:hover{
-            color: red;
+        .signup {
+            padding: 8px 40px;
+            background: rgba(88, 93, 192, 1);
+            border-radius: 30px;
+            color: white;
+            font-weight: 500;
+            font-size: 18px;
+            text-decoration: none;
+            margin-left: 20px;
         }
 
-        .row{
+        .row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 100px 0;
+            margin: 80px 0;
         }
 
-        .col-1{
+        .col-1 {
             flex-basis: 40%;
             position: relative;
             margin-left: 50px;
+            color: white;
         }
 
-        .col-1 h2{
+        .col-1 h2 {
             font-size: 40px;
             font-weight: 600;
         }
 
-        .col-1 h3{
-            font-size: 36px;
+        .col-1 h3 {
+            font-size: 30px;
             font-weight: 400;
-            margin: 20px 0;
+            margin-top: 20px;
+            margin-bottom: 1px;
         }
 
-        .col-1 p{
+        .col-1 p {
             font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 60px;
         }
 
-        button {
+        .col-1 a {
             width: 140px;
-            border: 0;
-            padding: 12px 10px;
-            outline: none;
-            cursor: pointer;
+            padding: 8px 100px;
+            background: rgba(88, 93, 192, 1);
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+            text-decoration: none;
         }
 
-        .col-1::after{
+        .col-1::after {
             content: '';
             width: 10px;
             height: 57%;
             position: absolute;
             left: -40px;
-            background-color: black;
-            top: 8px;
+            background-color: white;
+            top: 20px;
         }
 
-        .col-2{
+        .col-2 {
             position: relative;
             flex-basis: 60%;
             display: flex;
             align-items: center;
         }
 
-        .doggo {
-            height: 200px;
+        .home_hero {
+            height: 500px;
         }
 
         .img2 img {
-            height: 200px;
+            height: 400px;
         }
 
         .img3 img {
-            height: 200px;
+            height: 400px;
         }
 
         .color-box {
-           /* position: absolute;
+            position: absolute;
             right: 0;
             top: 0;
-            background-color: black;
-            border-radius: 20px 0 0 20px;
-            height: 150%;
-            width: 80%;
+            background-image: linear-gradient(to top left, rgba(88, 93, 192, 0.1), rgba(166, 153, 234, 1));
+            border-radius: 100px 0 0 100px;
+            height: 120%;
+            width: 90%;
             z-index: -1;
-            transform: translateX(150px);*/
+            transform: translateX(150px);
+        }
+
+        .navbar span {
+            color: white;
+            font-size: 22px;
+            margin-left: 20px;
         }
 
         @media only screen and (max-width:700px) {
-            .row{
-                flex-direction: column-reverse;
-                margin: 50px 0;
+            .container {
+                padding-left: 5%;
+                padding-right: 5%;
             }
 
-            .col-2{
+            .row {
+                flex-direction: column-reverse;
+                margin: 30px 0;
+            }
+
+            .logo {
+                width: 25px;
+                margin: 15px 0;
+            }
+
+            .navbar span {
+                display: none;
+            }
+
+            nav ul li {
+                margin-right: 0px;
+            }
+
+            nav ul li a {
+                font-size: 14px;
+            }
+
+            .col-2 {
                 flex-basis: 100%;
                 margin-bottom: 50px;
             }
 
-            .col-2 .doggo {
-                width: 77%;
+            .col-2 .home_hero {
+                padding-top: 20px;
+                width: 100%;
+                height: auto;
             }
 
-           /* .color-box{
-                transform: translateX(75px);
-            }*/
+            .login {
+                margin-right: 20px;
+            }
 
-            .col-1{
+            .color-box {
+                transform: translateX(75px);
+            }
+
+            .col-1 {
                 flex-basis: 100%;
             }
 
-            .col-1 h2{
-                font-size: 35px;
+            .col-1 h2 {
+                font-size: 30px;
             }
 
-            .col-1 h3{
-                font-size: 24px;
+            .col-1 h3 {
+                font-size: 20px;
             }
+
+            .col-1 p {
+                font-size: 16px;
+                margin-bottom: 50px;
+            }
+
+            .col-1 a {
+            width: 140px;
+            padding: 8px 60px;
+            margin-left: 20px;
+            font-size: 16px;
+        }
 
         }
-        
     </style>
 
 </head>
 
 <body>
     <div class="container">
-        <div class = "navbar">
+        <div class="navbar">
             <img src="media/images/logo.png" class="logo">
+            <span>Amonze</span>
             <nav>
                 <ul>
-                    <li><a href="">Log in</a></li>
-                    <li><a href="">Sign up</a></li>
+                    <li><a class="login" href="/login">Log in</a></li>
+                    <li><a class="signup" href="/register">Sign up</a></li>
                 </ul>
             </nav>
         </div>
 
         <div class="row">
             <div class="col-1">
-                <h2>Title</h2>
-                <h3>Title Description</h3>
-                <p>Description</p>
-                <button type="buton">Explore</button>
+                <h2>Amonze</h2>
+                <h3>the best NFTs Marketplace</h3>
+                <p>because we are the only one selling NFTs in DSI.</p>
+                <a href="/marketplace">Explore</a>
             </div>
             <div class="col-2">
-                <img src="media/images/1.png" class="doggo">
+                <img src="media/images/home_hero.png" class="home_hero">
                 <div class="color-box"></div>
-                <div class="img2">
+                <!-- <div class="img2">
                     <img src="media/images/2.png">
                 </div>
                 <div class="img3">
-                    <img src="media/images/3.png">
-                </div>
+                    <img src="media/images/3.png">-->
             </div>
         </div>
+    </div>
     </div>
 
 </body>
