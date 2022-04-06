@@ -1,174 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/media/images/favicon.ico" />
     <title>&#6158; Amonze | Home</title>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
         body {
             font-family: 'Poppins', sans-serif;
-            font-size: 32px;
             font-weight: 400;
-            /* background-image: linear-gradient(to top, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1)); */
+            /*
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+            height: 96vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            */
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            padding-left: 8%;
+            padding-right: 8%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .navbar{
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px;
+            cursor: pointer;
+            margin: 30px 0;
+        } 
+
+        nav {
+            flex: 1;
+            text-align: right;
+        }
+
+        nav ul li{
+            list-style: none;
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        nav ul li a{
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+        }
+
+        nav ul li a:hover{
+            color: red;
+        }
+
+        .row{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 100px 0;
+        }
+
+        .col-1{
+            flex-basis: 40%;
+            position: relative;
+            margin-left: 50px;
+        }
+
+        .col-1 h2{
+            font-size: 40px;
+            font-weight: 600;
+        }
+
+        .col-1 h3{
+            font-size: 36px;
+            font-weight: 400;
+            margin: 20px 0;
+        }
+
+        .col-1 p{
+            font-size: 24px;
+        }
+
+        button {
+            width: 140px;
+            border: 0;
+            padding: 12px 10px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .col-1::after{
+            content: '';
+            width: 10px;
+            height: 57%;
+            position: absolute;
+            left: -40px;
             background-color: black;
+            top: 8px;
         }
 
-        .header {
+        .col-2{
+            position: relative;
+            flex-basis: 60%;
             display: flex;
-            flex-wrap: wrap;
-            margin: 10px;
-            margin-top: 25px;
             align-items: center;
-            place-content: end;
         }
 
-        .login_and_signup {
-            padding-bottom: 10px;
-            font-weight: 500;
-            padding-top: 2vh;
+        .doggo {
+            height: 200px;
         }
 
-        .login {
-            margin-right: 5vw;
-            text-decoration: none;
-            font-size: 2vh;
-            margin-bottom: 10px;
-            color: rgba(255, 255, 255, 0.9);
+        .img2 img {
+            height: 200px;
         }
 
-        .login:hover {
-            color: rgba(255, 255, 255, 1);
+        .img3 img {
+            height: 200px;
         }
 
-        .signup {
-            background-color: rgba(88, 93, 192, 1);
-            border: 1px solid rgba(166, 153, 234, 0.8);
-            border-radius: 60px;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 2vh;
-            text-align: center;
-            text-decoration: none;
-            padding: 0.5vh 6vw;
-            margin-left: 15px;
-            margin-right: 3vw;
-            box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 50px 0px
-        }
-
-        .content {
-            display: flex;
-            height: 90vh;
-            place-content: center;
-            place-items: center;
-            align-items: center;
-            align-self: center;
-            align-content: center;
-            place-self: center;
-        }
-
-        .text_wrapper {
-            display: flex;
-            position: absolute;
-            bottom: 64vh;
-            text-align: center;
-            line-height: 1.5;
-        }
-
-        .text_wrapper p {
-            text-align: start;
-            padding-left: 7vw;
-            color: white;
-            font-size: 3.7vh;
-            font-weight: 700;
-            text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
-        }
-
-        .description {
-            position: absolute;
-            text-align: start;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.8vh;
-            line-height: 1.4em;
-            font-weight: 300;
-            right: 25vw;
-            padding-left: 7vw;
-            top: 17vh;
-        }
-
-        .background {
-            position: absolute;
-            width: 300px;
-            height: 700px;
-            filter: blur(150px);
+        .color-box {
+           /* position: absolute;
+            right: 0;
+            top: 0;
+            background-color: black;
+            border-radius: 20px 0 0 20px;
+            height: 150%;
+            width: 80%;
             z-index: -1;
-            top: 15vh;
-            left: 20vw;
+            transform: translateX(150px);*/
         }
 
-        .background1 {
-            position: absolute;
-            width: 300px;
-            height: 1400px;
-            filter: blur(200px);
-            z-index: -1;
-            top: 10vh;
-            left: 40vw;
-            transform: rotate(20deg);
-        }
+        @media only screen and (max-width:700px) {
+            .row{
+                flex-direction: column-reverse;
+                margin: 50px 0;
+            }
 
-        .explore_wrapper {
-            position: absolute;
-            place-self: center;
-            top: 87vh;
-        }
+            .col-2{
+                flex-basis: 100%;
+                margin-bottom: 50px;
+            }
 
-        .explore_wrapper a {
-            text-align: center;
-            background: rgba(88, 93, 192, 0.7);
-            border: 1px solid rgba(166, 153, 234, 0.8);
-            border-radius: 40px;
-            font-weight: 500;
-            color: white;
-            font-size: 3vh;
-            text-decoration: none;
-            padding: 0.8vh 20vw;
-            letter-spacing: 0.05em;
-            box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 50px 0px
-        }
+            .col-2 .doggo {
+                width: 77%;
+            }
 
-        .explore_wrapper a:hover {
-            background-color: rgba(88, 93, 192, 0.5);
-            color: rgba(255, 255, 255, 1);
-            box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 30px 0px;
+           /* .color-box{
+                transform: translateX(75px);
+            }*/
+
+            .col-1{
+                flex-basis: 100%;
+            }
+
+            .col-1 h2{
+                font-size: 35px;
+            }
+
+            .col-1 h3{
+                font-size: 24px;
+            }
+
         }
         
     </style>
+
 </head>
 
 <body>
-    <div class="header">
-        <div class="topright_wrapper">
-            <div class="login_and_signup">
-                <a class="login btn-glow" href="/login">Log in</a>
-                <a class="signup btn-glow" href="/register">Sign up</a>
+    <div class="container">
+        <div class = "navbar">
+            <img src="media/images/logo.png" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="">Log in</a></li>
+                    <li><a href="">Sign up</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="row">
+            <div class="col-1">
+                <h2>Title</h2>
+                <h3>Title Description</h3>
+                <p>Description</p>
+                <button type="buton">Explore</button>
             </div>
-        </div>
-    </div>
-
-    <div class="content">
-        <div class="text_wrapper">
-            <p>WELCOME TO OUR MARKETPLACE</p>
-            <a class="description">Amonze is the DSI's biggest puppies NFTs marketplace
-                because we are the only one.</a>
-        </div>
-
-        <img class="background" src="media/images/banner.jpg" alt="banner" />
-        <img class="background1" src="media/images/banner2.jpg" alt="banner" />
-
-        <div class="explore_wrapper">
-            <a class="explore" href="/marketplace">Explore</a>
+            <div class="col-2">
+                <img src="media/images/1.png" class="doggo">
+                <div class="color-box"></div>
+                <div class="img2">
+                    <img src="media/images/2.png">
+                </div>
+                <div class="img3">
+                    <img src="media/images/3.png">
+                </div>
+            </div>
         </div>
     </div>
 
