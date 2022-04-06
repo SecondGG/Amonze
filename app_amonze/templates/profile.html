@@ -69,10 +69,15 @@
         }
 
         .row {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 20px;
             padding: 20px;
             background: rgba(23, 21, 55, 0.5);
             border-radius: 10px;
+        }
+
+        .form_wrapper {
         }
 
         .row input {}
@@ -118,8 +123,8 @@
                     -->
                     {% for field in form %}
                     <div class="row">
-                        {{ field.label }}:
-                        {{ field }}
+                        <span>{{ field.label }}:</span>
+                        <span>{{ field }}</span>
                     </div>
                     {% endfor %}
                     <!--
