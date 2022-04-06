@@ -59,13 +59,20 @@
 
         .signup {
             padding: 8px 40px;
-            background: rgba(88, 93, 192, 1);
+            background: rgba(88, 93, 192, 0.7);
             border-radius: 30px;
-            color: white;
+            color: rgba(255, 255, 255, 0.9);
             font-weight: 500;
             font-size: 18px;
             text-decoration: none;
             margin-left: 20px;
+            box-shadow: rgba(166, 153, 234, 0.2) 0px 0px 25px 0px
+        }
+
+        .signup:hover {
+            background-color: rgba(88, 93, 192, 0.9);
+            color: rgba(255, 255, 255, 1);
+            box-shadow: rgba(166, 153, 234, 0.3) 0px 0px 30px 0px;
         }
 
         .row {
@@ -103,12 +110,20 @@
         .col-1 a {
             width: 140px;
             padding: 8px 100px;
-            background: rgba(88, 93, 192, 1);
+            background: rgba(88, 93, 192, 0.7);
             border-radius: 30px;
             color: white;
             font-weight: 600;
             font-size: 20px;
             text-decoration: none;
+            letter-spacing: 0.05em;
+            box-shadow: rgba(166, 153, 234, 0.2) 0px 0px 25px 0px
+        }
+
+        .col-1 a:hover {
+            background-color: rgba(88, 93, 192, 0.9);
+            color: rgba(255, 255, 255, 1);
+            box-shadow: rgba(166, 153, 234, 0.3) 0px 0px 30px 0px;
         }
 
         .col-1::after {
@@ -129,7 +144,7 @@
         }
 
         .home_hero {
-            height: 500px;
+            height: 510px;
         }
 
         .img2 img {
@@ -144,18 +159,53 @@
             position: absolute;
             right: 0;
             top: 0;
-            background-image: linear-gradient(to top left, rgba(88, 93, 192, 0.1), rgba(166, 153, 234, 1));
+            /*background-image: linear-gradient(to top left, rgba(88, 93, 192, 0.1), rgba(166, 153, 234, 1));*/
+            background-color: transparent;
             border-radius: 100px 0 0 100px;
             height: 120%;
             width: 90%;
             z-index: -1;
             transform: translateX(150px);
+            overflow: hidden;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 25px 0px;
+        }
+
+        .color-box::before {
+            content: '';
+            background-image: url("media/images/banner.jpg");
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            filter: blur(80px);
+            z-index: -2;
         }
 
         .navbar span {
             color: white;
             font-size: 22px;
             margin-left: 20px;
+        }
+
+        .background {
+            position: absolute;
+            width: 24vh;
+            height: 56vh;
+            filter: blur(150px);
+            z-index: -1;
+            top: 15vh;
+            left: 20vw;
+        }
+
+        .background1 {
+            position: absolute;
+            width: 18vh;
+            height: 60vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 10vh;
+            left: 40vw;
+            transform: rotate(20deg);
         }
 
         @media only screen and (max-width:700px) {
@@ -184,6 +234,13 @@
 
             nav ul li a {
                 font-size: 14px;
+            }
+
+            .signup {
+                padding: 4px 20px;
+                border-radius: 30px;
+                font-size: 14px;
+                margin-left: 5px;
             }
 
             .col-2 {
@@ -223,11 +280,22 @@
             }
 
             .col-1 a {
-            width: 140px;
-            padding: 8px 60px;
-            margin-left: 20px;
-            font-size: 16px;
-        }
+                width: 140px;
+                padding: 8px 60px;
+                margin-left: 20px;
+                font-size: 16px;
+            }
+
+            .background {
+                width: 50%;
+                height: auto;
+            }
+
+            .background1 {
+                width: 50%;
+                height: auto;
+
+            }
 
         }
     </style>
@@ -246,6 +314,9 @@
                 </ul>
             </nav>
         </div>
+
+        <img class="background" src="media/images/banner.jpg" alt="banner" />
+        <img class="background1" src="media/images/banner2.jpg" alt="banner" />
 
         <div class="row">
             <div class="col-1">
