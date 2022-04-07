@@ -22,4 +22,4 @@ class CustomerForm(ModelForm):
     class Meta:
         model = Customer
         fields = '__all__'
-        exclude = ['user', 'profile_pic']
+        exclude = ['user', 'profile_pic', 'date_of_birth']
