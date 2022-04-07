@@ -4,7 +4,7 @@ from multiprocessing import context
 import re
 from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
-from app_amonze.models import Customer, Item
+from app_amonze.models import Customer, Item, Transaction, TransactionItem, ShippingAddress
 from app_amonze.forms import SignUpForm
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
@@ -92,3 +92,18 @@ def profile(request):
 
     context={'form':form}
     return render(request, 'profile.html', context)
+
+def cart(request):
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        transaction, created = Transaction.objects.get_or_create(customer=customer, complete = False)
+        items = transaction.objects.all()
+    else:
+        items = []
+    context = {'items':items}
+    return render(request, 'cart.html', context)
+
+def checkout(request):
+    context = {}
+    return render(request, 'checkout.html', context)
