@@ -30,8 +30,9 @@ urlpatterns = [
     path('login/', views.loginPage, name = 'login'),
     path('logout/', views.logoutUser, name = 'logout'),
     path('signup/', views.signup, name = 'signup'),
-    path('profile/', views.profile, name = 'profile')
-
+    path('profile/', views.profile, name = 'profile'),
+    path('cart/', views.cart, name ='cart'),
+    path('checkout/', views.checkout, name='checkout'),
 ]
 
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

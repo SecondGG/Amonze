@@ -94,16 +94,21 @@ def profile(request):
     return render(request, 'profile.html', context)
 
 def cart(request):
-
     if request.user.is_authenticated:
         customer = request.user.customer
-        transaction, created = Transaction.objects.get_or_create(customer=customer, complete = False)
-        items = transaction.objects.all()
+        transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
+        items = TransactionItem.objects.all()
     else:
         items = []
-    context = {'items':items}
+    context = {'items':items, 'transaction':transactions}
     return render(request, 'cart.html', context)
 
 def checkout(request):
-    context = {}
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
+        items = TransactionItem.objects.all()
+    else:
+        items = []
+    context = {'items':items, 'transaction':transactions}
     return render(request, 'checkout.html', context)

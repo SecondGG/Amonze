@@ -37,11 +37,17 @@ class Transaction (models.Model):
 
     def __str__(self):
         return "%s"%(self.pk)
-
+        
 class TransactionItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True, blank=True)
     transaction = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True, blank=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
+
+    @property
+    def get_total(self):
+        total = self.item.price * self.quantity
+        return total
+    
 
 
 class ShippingAddress(models.Model):
