@@ -1,25 +1,57 @@
+{% load static %}
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <style>
-            img {
-                height: 200px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="cart_container">
-            {% for item in items %}
-            <div class="item_img"> 
-                <img src="/media/{{ item.item.item_image }}">
-            </div>
-            <p>{{item.item.item_name}}</p>
-            <p>${{item.item.price|floatformat:2}}</p>
-            <p>{{item.quantity}}</p>
-            <h3>${{item.get_total|floatformat:2}}</h3>
-            {% endfor %}
-        </div>
 
-    </body>
+<head>
+
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
+
+    <style>
+        img {
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cart_container">
+        {% for item in items %}
+        <div class="item_img">
+            <img src="/media/{{ item.item.item_image }}">
+        </div>
+        <p>{{item.item.item_name}}</p>
+        <p>${{item.item.price|floatformat:2}}</p>
+        <p>{{item.quantity}}</p>
+        <div class="quantity">
+            <button data-product="{{item.item.item_id}}" data-action="add" class="btn add-btn update-cart">Add</button>
+            <button data-product="{{item.item.item_id}}" data-action="remove"
+                class="btn remove-btn update-cart">Remove</button>
+        </div>
+        <h3>${{item.get_total|floatformat:2}}</h3>
+        {% endfor %}
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+</body>
+
 </html>

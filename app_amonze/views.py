@@ -12,6 +12,8 @@ from app_amonze.forms import ProfileForm, CustomerForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
+from django.http import JsonResponse
+import json
 
 
 # Create your views here.
@@ -112,3 +114,28 @@ def checkout(request):
         items = []
     context = {'items':items, 'transaction':transactions}
     return render(request, 'checkout.html', context)
+
+def updateItem(request):
+    data = json.loads(request.body)
+    itemId = data['itemId']
+    action = data['action']
+
+    print('Action:', action)
+    print('itemId:', itemId)
+
+    customer = request.user.customer
+    item = Item.objects.get(item_id=itemId)
+    transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
+    transactionItems, created = TransactionItem.objects.get_or_create(transaction=transactions, item=item)
+    
+    if action == 'add':
+        transactionItems.quantity = (transactionItems.quantity + 1)
+    elif action == 'remove':
+        transactionItems.quantity = (transactionItems.quantity - 1)
+    
+    transactionItems.save()
+
+    if transactionItems.quantity <= 0:
+        transactionItems.delete()
+    
+    return JsonResponse('Item was added', safe=False)
