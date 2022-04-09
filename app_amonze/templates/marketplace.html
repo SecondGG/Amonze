@@ -28,6 +28,8 @@
             font-size: 52px;
             text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
             padding-bottom: 40px;
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
 
         .market_container {
@@ -70,25 +72,35 @@
             text-shadow: 0 0 80px rgba(166, 153, 234, 0.7), 0 0 32px rgba(88, 93, 192, 0.7);
         }
 
-        a:link {
+        .navbar{
+            margin: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: end;
+            margin-top: 15px;
+        }
+
+        .navbar a{
+            margin-left: 40px;
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
         }
 
-        a:visited {
+        .navbar a:hover{
+            margin-left: 40px;
+            color: rgba(255, 255, 255, 1);
             text-decoration: none;
         }
-
-        .hello {
-            color: white;
-        }
-
     </style>
 
 </head>
 
 <body>
-    <span class="hello">Hello, <a href="/profile">{{request.user}}</a></span>
-    <span><a href="/logout">Logout</a></span>
+    <div class="navbar">
+        <a class='profile' href="/profile">My Profile</a>
+        <a class="cart" href="/cart">My Shopping Cart</a>
+        <a class="logout" href="/logout">Logout</a>
+    </div>
     <div class="market_header">
         <h2>MARKETPLACE</h2>
     </div>
