@@ -75,16 +75,23 @@
             /* Position the navbar at the top of the page */
             width: 100%;
             /* Full width */
+            display: flex;
+            justify-content: center;
+            filter: drop-shadow(0px -2px 15px rgba(0, 0, 0, 0.25));
         }
 
         .navbar button {
-            float: left;
+            font-family: 'Poppins', sans-serif;
             display: block;
-            color: #f2f2f2;
+            color: rgba(88, 93, 192, 1);
             text-align: center;
-            padding: 14px 16px;
             text-decoration: none;
-            background: black;
+            background: rgba(255, 255, 255, 1);
+            border: 0;
+            padding: 10px 0;
+            width: 100vw;
+            font-size: 32px;
+            font-weight: 600;
         }
 
         .navbar button:hover {
@@ -206,7 +213,7 @@
         }
 
         @media only screen and (max-width:700px) {
-
+            
             .header {
                 margin-top: 10px;
                 margin-left: 10px;
@@ -222,7 +229,6 @@
             }
 
             .navbar button {
-                width: 100px;
             }
 
             .item_container {
@@ -239,6 +245,11 @@
                 margin-top: 20px;
                 border-radius: 20px;
                 width: 100vw;
+                height: 90vh;
+            }
+
+            .background1{
+                display: none;
             }
 
             .desc_wrapper {
@@ -249,7 +260,6 @@
                 visibility: visible;
                 width: 100vw;
             }
-
             .name_wrapper {
                 margin-left: 20px;
             }
@@ -263,6 +273,10 @@
 
             .price_wrapper {
                 margin-left: 20px;
+            }
+
+            .interact{
+                visibility: hidden;
             }
 
             .price_wrapper p {
