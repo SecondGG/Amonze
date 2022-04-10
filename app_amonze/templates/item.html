@@ -39,18 +39,24 @@
             background-attachment: fixed;
         }
 
-        .header{
+        .header {
             margin-top: 25px;
             margin-left: 20px;
         }
 
         .header a {
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3px 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 9999px;
+            font-size: 28px;
+            text-align: center;
         }
 
         .header a:hover {
             color: rgba(255, 255, 255, 1);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .content {
@@ -92,12 +98,12 @@
             border-radius: 40px;
             height: 650px;
             overflow: hidden;
+            align-items: center;
+            align-content: center;
         }
 
         img {
             width: 500px;
-            display: flex;
-            flex-wrap: wrap;
         }
 
         .name_wrapper {
@@ -147,7 +153,7 @@
             font-size: 20px;
         }
 
-        .interact{
+        .interact {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -155,7 +161,7 @@
             top: 180px;
         }
 
-        .interact  button{
+        .interact button {
             font-family: 'Poppins', sans-serif;
             padding: 12px 48px;
             border-radius: 40px;
@@ -166,12 +172,13 @@
             font-size: 20px;
         }
 
-        .interact  button:hover {
+        .interact button:hover {
             background: rgba(255, 255, 255, 1);
             color: rgba(88, 93, 192, 1);
             border: 2px solid rgba(88, 93, 192, 1);
             cursor: pointer;
         }
+
         .background {
             position: absolute;
             width: 40vh;
@@ -193,22 +200,77 @@
             transform: rotate(20deg);
         }
 
+        .image_wrapper {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
         @media only screen and (max-width:700px) {
+
+            .header {
+                margin-top: 10px;
+                margin-left: 10px;
+                margin-bottom: 20px;
+                position: fixed;
+            }
+
+            .header a {
+                text-decoration: none;
+                font-size: 20px;
+                font-weight: 400;
+                padding: 3px 12px;
+            }
+
             .navbar button {
                 width: 100px;
             }
 
+            .item_container {
+                border-radius: 20px;
+                height: 65%;
+            }
+
             img {
-                width: 400px;
+                width: 100vw;
             }
 
             .desc_container {
-                margin: 0;
+                margin: 0px;
+                margin-top: 20px;
+                border-radius: 20px;
+                width: 100vw;
+            }
+
+            .desc_wrapper {
+                margin: 20px;
             }
 
             .navbar {
                 visibility: visible;
                 width: 100vw;
+            }
+
+            .name_wrapper {
+                margin-left: 20px;
+            }
+
+            .name_wrapper p {
+                font-weight: 400;
+                font-size: 28px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            .price_wrapper {
+                margin-left: 20px;
+            }
+
+            .price_wrapper p {
+                margin-left: 0px;
+                margin-top: 20px;
+                font-size: 24px;
+                font-weight: 600;
+                text-align: start;
             }
         }
     </style>
@@ -216,7 +278,7 @@
 
 <body>
     <div class="header">
-        <a href="{% url 'marketplace' %}">Back</a>
+        <a href="{% url 'marketplace' %}"><</a>
     </div>
     <img class="background" src="/media/images/banner.jpg" alt="banner" />
     <img class="background1" src="/media/images/banner2.jpg" alt="banner" />
