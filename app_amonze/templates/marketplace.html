@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/media/images/favicon.ico" />
     <title>&#6158; Amonze | Marketplace</title>
     <style>
@@ -46,6 +47,10 @@
             width: 256px;
         }
 
+        .item_wrapper a {
+            text-decoration: none;
+        }
+
         .item_desc {
             margin-bottom: 5%;
             font-size: 24px;
@@ -72,24 +77,41 @@
             text-shadow: 0 0 80px rgba(166, 153, 234, 0.7), 0 0 32px rgba(88, 93, 192, 0.7);
         }
 
-        .navbar{
+        .navbar {
             margin: 10px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: end;
+            justify-content: space-between;
             margin-top: 15px;
+            align-items: center;
         }
 
-        .navbar a{
+        .navbar a {
             margin-left: 40px;
             color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
         }
 
-        .navbar a:hover{
+        .navbar a:hover {
             margin-left: 40px;
             color: rgba(255, 255, 255, 1);
             text-decoration: none;
+        }
+
+        .home a {
+            margin-left: 10px;
+        }
+
+        .home a:hover {
+            margin-left: 10px;
+        }
+
+        .logo {
+            height: 30px;
+        }
+
+        @media only screen and (max-width:700px) {
+            
         }
     </style>
 
@@ -97,9 +119,16 @@
 
 <body>
     <div class="navbar">
-        <a class='profile' href="/profile">My Profile</a>
-        <a class="cart" href="/cart">My Shopping Cart</a>
-        <a class="logout" href="/logout">Logout</a>
+        <div class="home">
+            <a href="{% url 'home' %}">
+                <img src="media/images/logo.png" href="{% url 'home' %}" class="logo">
+            </a>
+        </div>
+        <div class="navbut">
+            <a class='profile' href="/profile">My Profile</a>
+            <a class="cart" href="/cart">My Shopping Cart</a>
+            <a class="logout" href="/logout">Logout</a>
+        </div>
     </div>
     <div class="market_header">
         <h2>MARKETPLACE</h2>
