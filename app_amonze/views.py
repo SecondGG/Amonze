@@ -99,7 +99,7 @@ def cart(request):
     if request.user.is_authenticated:
         customer = request.user.customer
         transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
-        items = TransactionItem.objects.all()
+        items = TransactionItem.objects.filter(transaction=transactions)
     else:
         items = []
     context = {'items':items, 'transaction':transactions}
@@ -109,7 +109,7 @@ def checkout(request):
     if request.user.is_authenticated:
         customer = request.user.customer
         transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
-        items = TransactionItem.objects.all()
+        items = TransactionItem.objects.filter(transaction=transactions)
     else:
         items = []
     context = {'items':items, 'transaction':transactions}
