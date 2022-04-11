@@ -43,9 +43,9 @@
         <p>${{item.item.price|floatformat:2}}</p>
         <p>{{item.quantity}}</p>
         <div class="quantity">
-            <button data-product="{{item.item.item_id}}" data-action="add" class="btn add-btn update-cart">Add</button>
+            <button data-product="{{item.item.item_id}}" data-action="add" class="btn add-btn update-cart">▲</button>
             <button data-product="{{item.item.item_id}}" data-action="remove"
-                class="btn remove-btn update-cart">Remove</button>
+                class="btn remove-btn update-cart">▼</button>
         </div>
         <h3>${{item.get_total|floatformat:2}}</h3>
         {% endfor %}
