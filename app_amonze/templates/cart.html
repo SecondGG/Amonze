@@ -44,17 +44,12 @@
         }
 
         .item_wrapper {
-            margin: 40px;
+            margin: 20px;
             background: white;
             border-radius: 25px;
-            width: 800px;
+            width: 850px;
             height: 360px;
             column-count: 2;
-        }
-
-        .item_wrapper li {
-            margin: 25px;
-            display: block;
         }
 
         .item_img {
@@ -81,6 +76,23 @@
         .quantity {
             text-align: right;
         }
+
+        .detail {
+            margin: 25px;
+            font-size: 30px;
+        }
+
+        @media only screen and (min-width:1000px) {
+            .item_wrapper {
+                margin: 15px;
+                width: 450px;
+                height: 210px;
+            }
+
+            .detail {
+                font-size: 18px;
+            }
+        }
     </style>
 
 </head>
@@ -93,17 +105,17 @@
         {% for item in items %}
         <div class="item_wrapper">
             <img class="item_img" src="/media/{{ item.item.item_image }}">
-            <li style="text-align: right;">x{{item.quantity}}</li>
-            <li>{{item.item.item_name}}</li>
-            <li>${{item.item.price|floatformat:2}}</li>
-            <div>
-                <h3 style="text-align: right;">${{item.get_total|floatformat:2}}</h3>
-            </div>
-            <div class="quantity">
-                <button data-product="{{item.item.item_id}}" data-action="add"
-                    class="btn add-btn update-cart">▲</button>
-                <button data-product="{{item.item.item_id}}" data-action="remove"
-                    class="btn remove-btn update-cart">▼</button>
+            <div class="detail">
+                <ul style="float: right;">x{{item.quantity}}</ul>
+                <h4>{{item.item.item_name}}</h4>
+                <span>${{item.item.price|floatformat:2}}</span>
+                <h4 style="text-align: right;">Total: ${{item.get_total|floatformat:2}}</h4>
+                <div class="quantity">
+                    <button data-product="{{item.item.item_id}}" data-action="add"
+                        class="btn add-btn update-cart">▲</button>
+                    <button data-product="{{item.item.item_id}}" data-action="remove"
+                        class="btn remove-btn update-cart">▼</button>
+                </div>
             </div>
         </div>
         {% endfor %}
