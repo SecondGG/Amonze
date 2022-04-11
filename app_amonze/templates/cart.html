@@ -27,27 +27,85 @@
     </script>
 
     <style>
-        img {
-            height: 200px;
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+            height: 96vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .cart_container {
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .item_wrapper {
+            margin: 40px;
+            background: white;
+            border-radius: 25px;
+            width: 800px;
+            height: 360px;
+            column-count: 2;
+        }
+
+        .item_wrapper li {
+            margin: 25px;
+            display: block;
+        }
+
+        .item_img {
+            height: 100%;
+            border-radius: 25px;
+        }
+
+        .image_wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .image_wrapper a {
+            display: flex;
+            font-size: 24px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-left: 25px;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 80px rgba(166, 153, 234, 0.7), 0 0 32px rgba(88, 93, 192, 0.7);
+        }
+
+        .quantity {
+            text-align: right;
         }
     </style>
+
 </head>
 
 <body>
+    <div class="head">
+        <a href="{% url 'checkout' %}">checkout</a>
+    </div>
     <div class="cart_container">
         {% for item in items %}
-        <div class="item_img">
-            <img src="/media/{{ item.item.item_image }}">
+        <div class="item_wrapper">
+            <img class="item_img" src="/media/{{ item.item.item_image }}">
+            <li style="text-align: right;">x{{item.quantity}}</li>
+            <li>{{item.item.item_name}}</li>
+            <li>${{item.item.price|floatformat:2}}</li>
+            <div>
+                <h3 style="text-align: right;">${{item.get_total|floatformat:2}}</h3>
+            </div>
+            <div class="quantity">
+                <button data-product="{{item.item.item_id}}" data-action="add"
+                    class="btn add-btn update-cart">▲</button>
+                <button data-product="{{item.item.item_id}}" data-action="remove"
+                    class="btn remove-btn update-cart">▼</button>
+            </div>
         </div>
-        <p>{{item.item.item_name}}</p>
-        <p>${{item.item.price|floatformat:2}}</p>
-        <p>{{item.quantity}}</p>
-        <div class="quantity">
-            <button data-product="{{item.item.item_id}}" data-action="add" class="btn add-btn update-cart">▲</button>
-            <button data-product="{{item.item.item_id}}" data-action="remove"
-                class="btn remove-btn update-cart">▼</button>
-        </div>
-        <h3>${{item.get_total|floatformat:2}}</h3>
         {% endfor %}
     </div>
 
