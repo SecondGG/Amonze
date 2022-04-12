@@ -39,6 +39,11 @@ class Transaction (models.Model):
         return "%s"%(self.pk)
 
     @property
+    def shipping(self):
+        shipping = False
+        return shipping
+
+    @property
     def get_cart_total(self):
         transactionitems = self.transactionitem_set.all()
         total = sum([item.get_total for item in transactionitems])

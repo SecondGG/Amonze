@@ -2,6 +2,7 @@ from audioop import reverse
 from http.client import HTTPResponse
 from multiprocessing import context
 import re
+from typing import OrderedDict
 from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
 from app_amonze.models import Customer, Item, Transaction, TransactionItem, ShippingAddress
@@ -102,6 +103,7 @@ def cart(request):
         items = TransactionItem.objects.filter(transaction=transactions)
     else:
         items = []
+        transactions = {'get_cart_total':0, 'shipping':False}
     context = {'items':items, 'transaction':transactions}
     return render(request, 'cart.html', context)
 
@@ -112,6 +114,7 @@ def checkout(request):
         items = TransactionItem.objects.filter(transaction=transactions)
     else:
         items = []
+        transactions = {'get_cart_total':0, 'shipping':False}
     context = {'items':items, 'transaction':transactions}
     return render(request, 'checkout.html', context)
 
@@ -139,3 +142,16 @@ def updateItem(request):
         transactionItems.delete()
     
     return JsonResponse('Item was added', safe=False)
+
+def processOrder(request):
+    print('Data:', request.body)
+    data = json.loads(request.body)
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
+        total = float(data['form']['total']) 
+
+        if total == transactions.get_cart_total:
+            transactions.complete = True
+        transactions.save()
+    return JsonResponse('Payment Completed', safe=False)
