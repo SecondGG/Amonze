@@ -37,7 +37,13 @@ class Transaction (models.Model):
 
     def __str__(self):
         return "%s"%(self.pk)
-        
+
+    @property
+    def get_cart_total(self):
+        transactionitems = self.transactionitem_set.all()
+        total = sum([item.get_total for item in transactionitems])
+        return total
+
 class TransactionItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True, blank=True)
     transaction = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True, blank=True)

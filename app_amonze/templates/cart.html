@@ -74,12 +74,17 @@
         }
 
         .quantity {
-            text-align: right;
+            position: relative;
+
         }
 
         .detail {
             margin: 25px;
             font-size: 30px;
+        }
+
+        .total p {
+            color: white;
         }
 
         @media only screen and (min-width:1000px) {
@@ -102,6 +107,9 @@
         <a href="{% url 'checkout' %}">checkout</a>
     </div>
     <div class="cart_container">
+        <div class="total">
+            <p>Total: ${{ transaction.get_cart_total }}</p>
+        </div>
         {% for item in items %}
         <div class="item_wrapper">
             <img class="item_img" src="/media/{{ item.item.item_image }}">
