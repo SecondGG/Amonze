@@ -316,10 +316,10 @@
         <div class="navbar">
             <img src="media/images/logo.png" class="logo">
             <span>Amonze</span>
-            <nav>
+            <nav clas="actionbtn">
                 <ul>
-                    <li><a class="login" href="/login">Log in</a></li>
-                    <li><a class="signup" href="/register">Sign up</a></li>
+                    <li><a class="login" href="/login" id="loginbtn">Log in</a></li>
+                    <li><a class="signup" href="/register" id="signupbtn">Sign up</a></li>
                 </ul>
             </nav>
         </div>
@@ -346,7 +346,26 @@
         </div>
     </div>
     </div>
+    <script>
 
+        var user = '{{request.user}}'   
+        var loginbtn = document.getElementById('loginbtn')
+        var signupbtn = document.getElementById('signupbtn')
+
+        loginbtn.style.display = "flex";
+        signupbtn.style.display = "flex";
+
+        if (user != 'AnonymousUser') {
+            loginbtn.style.display = "none";
+            signupbtn.style.display = "none";
+        }
+
+        else {
+            loginbtn.style.display = "flex";
+            signupbtn.style.display = "flex";
+        }
+
+    </script>
 </body>
 
 </html>

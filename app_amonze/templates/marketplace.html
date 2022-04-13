@@ -275,7 +275,7 @@
         <div class="navbut" id="menuList">
             <a class='profile' href="/profile">My Profile</a>
             <a class="cart" href="/cart">My Shopping Cart</a>
-            <a class="logout" href="/logout">Logout</a>
+            <a class="logout" href="/logout" id="logoutbtn">Logout</a>
         </div>
         <img src="media/images/menu_button.png" class="menu_button" onclick="toggglemenu()">
     </div>
@@ -317,6 +317,23 @@
                 menuList.style.maxHeight = "0px";
             }
 
+        }
+
+    </script>
+
+    <script>
+
+        var user = '{{request.user}}'
+        var loginbtn = document.getElementById('logoutbtn')
+
+        logoutbtn.style.visibility = "visible";
+
+        if (user == 'AnonymousUser') {
+            logoutbtn.style.visibility = "hidden";
+        }
+
+        else {
+            logoutbtn.style.visibility = "visible";
         }
 
     </script>

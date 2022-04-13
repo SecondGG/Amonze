@@ -21,9 +21,17 @@
         }
 
         .logo {
-            height: 3vh;
-            margin-left: 3vw;
-            filter: drop-shadow(0px 0px 10px rgba(166, 153, 234, 0.35));
+            height: 35px;
+            cursor: pointer;
+            margin-left: 40px;
+            opacity: 0.55;
+            margin-top: 3px;
+            filter: drop-shadow(0px 0px 4px rgba(166, 153, 234, 0.7));
+        }
+
+        .logo:hover {
+            opacity: 0.7;
+            filter: drop-shadow(0px 0px 10px rgba(166, 153, 234, 0.8));
         }
 
         .head_wrapper {
@@ -155,8 +163,10 @@
 
 <body>
     <div class="header">
-        <div class="image_wrapper">
-            <img class="logo" src="media/images/logo.png" alt="logo" />
+        <div class="home">
+            <a href="{% url 'home' %}">
+                <img src="media/images/left-arrow.png" href="{% url 'home' %}" class="logo">
+            </a>
         </div>
     </div>
 
