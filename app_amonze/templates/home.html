@@ -1,41 +1,63 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/media/images/favicon.ico" />
     <title>&#6158; Amonze | Home</title>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
         body {
             font-family: 'Poppins', sans-serif;
-            font-size: 32px;
             font-weight: 400;
-            /* background-image: linear-gradient(to top, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1)); */
-            background-color: black;
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            margin-top: 10px;
         }
 
-        .header {
+        .container {
+            width: 100%;
+            min-height: 95vh;
+            padding-left: 8%;
+            padding-right: 8%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .navbar {
+            width: 100%;
             display: flex;
-            flex-wrap: wrap;
-            margin: 10px;
-            margin-top: 25px;
             align-items: center;
-            place-content: end;
         }
 
-        .login_and_signup {
-            padding-bottom: 10px;
-            font-weight: 500;
-            padding-top: 2vh;
+        .logo {
+            width: 50px;
+            cursor: pointer;
+            margin: 30px 0;
+        }
+
+        nav {
+            flex: 1;
+            text-align: right;
+        }
+
+        nav ul li {
+            list-style: none;
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
         }
 
         .login {
-            margin-right: 5vw;
-            text-decoration: none;
-            font-size: 2vh;
-            margin-bottom: 10px;
             color: rgba(255, 255, 255, 0.9);
         }
 
@@ -44,63 +66,139 @@
         }
 
         .signup {
-            background-color: rgba(88, 93, 192, 1);
-            border: 1px solid rgba(166, 153, 234, 0.8);
-            border-radius: 60px;
+            padding: 8px 40px;
+            background: rgba(88, 93, 192, 0.7);
+            border-radius: 30px;
             color: rgba(255, 255, 255, 0.9);
-            font-size: 2vh;
-            text-align: center;
+            font-weight: 500;
+            font-size: 18px;
             text-decoration: none;
-            padding: 0.5vh 6vw;
-            margin-left: 15px;
-            margin-right: 3vw;
-            box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 50px 0px
+            margin-left: 20px;
+            box-shadow: rgba(166, 153, 234, 0.2) 0px 0px 25px 0px
         }
 
-        .content {
+        .signup:hover {
+            background-color: rgba(88, 93, 192, 0.9);
+            color: rgba(255, 255, 255, 1);
+            box-shadow: rgba(166, 153, 234, 0.3) 0px 0px 30px 0px;
+        }
+
+        .row {
             display: flex;
-            height: 90vh;
-            place-content: center;
-            place-items: center;
+            justify-content: space-between;
             align-items: center;
-            align-self: center;
-            align-content: center;
-            place-self: center;
+            margin: 80px 0;
         }
 
-        .text_wrapper {
-            display: flex;
-            position: absolute;
-            bottom: 64vh;
-            text-align: center;
-            line-height: 1.5;
-        }
-
-        .text_wrapper p {
-            text-align: start;
-            padding-left: 7vw;
+        .col-1 {
+            flex-basis: 40%;
+            position: relative;
+            margin-left: 50px;
             color: white;
-            font-size: 3.7vh;
-            font-weight: 700;
-            text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
         }
 
-        .description {
-            position: absolute;
-            text-align: start;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.8vh;
-            line-height: 1.4em;
+        .col-1 h2 {
+            font-size: 40px;
+            font-weight: 600;
+        }
+
+        .col-1 h3 {
+            font-size: 30px;
+            font-weight: 400;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        .col-1 p {
+            font-size: 24px;
             font-weight: 300;
-            right: 25vw;
-            padding-left: 7vw;
-            top: 17vh;
+            margin-bottom: 60px;
+        }
+
+        .col-1 a {
+            width: 140px;
+            padding: 8px 100px;
+            background: rgba(88, 93, 192, 0.7);
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            box-shadow: rgba(166, 153, 234, 0.2) 0px 0px 25px 0px
+        }
+
+        .col-1 a:hover {
+            background-color: rgba(88, 93, 192, 0.9);
+            color: rgba(255, 255, 255, 1);
+            box-shadow: rgba(166, 153, 234, 0.3) 0px 0px 30px 0px;
+        }
+
+        .col-1::after {
+            content: '';
+            width: 10px;
+            height: 57%;
+            position: absolute;
+            left: -40px;
+            background-color: white;
+            top: 20px;
+        }
+
+        .col-2 {
+            position: relative;
+            flex-basis: 60%;
+            display: flex;
+            align-items: center;
+        }
+
+        .home_hero {
+            height: 510px;
+        }
+
+        .img2 img {
+            height: 400px;
+        }
+
+        .img3 img {
+            height: 400px;
+        }
+
+        .color-box {
+            position: absolute;
+            right: 0;
+            top: 0;
+            /*background-image: linear-gradient(to top left, rgba(88, 93, 192, 0.1), rgba(166, 153, 234, 1));*/
+            background-color: transparent;
+            border-radius: 100px 0 0 100px;
+            height: 115%;
+            width: 90%;
+            z-index: -1;
+            transform: translateX(150px);
+            overflow: hidden;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 25px 0px;
+        }
+
+        .color-box::before {
+            content: '';
+            background-image: url("media/images/banner.jpg");
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            filter: blur(80px);
+            z-index: -2;
+        }
+
+        .navbar span {
+            color: white;
+            font-size: 22px;
+            margin-left: 20px;
         }
 
         .background {
             position: absolute;
-            width: 300px;
-            height: 700px;
+            width: 24vh;
+            height: 56vh;
             filter: blur(150px);
             z-index: -1;
             top: 15vh;
@@ -109,8 +207,8 @@
 
         .background1 {
             position: absolute;
-            width: 300px;
-            height: 1400px;
+            width: 18vh;
+            height: 60vh;
             filter: blur(200px);
             z-index: -1;
             top: 10vh;
@@ -118,60 +216,156 @@
             transform: rotate(20deg);
         }
 
-        .explore_wrapper {
-            position: absolute;
-            place-self: center;
-            top: 87vh;
-        }
+        @media only screen and (max-width:700px) {
+            .container {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
 
-        .explore_wrapper a {
-            text-align: center;
-            background: rgba(88, 93, 192, 0.7);
-            border: 1px solid rgba(166, 153, 234, 0.8);
-            border-radius: 40px;
-            font-weight: 500;
-            color: white;
-            font-size: 3vh;
-            text-decoration: none;
-            padding: 0.8vh 20vw;
-            letter-spacing: 0.05em;
-            box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 50px 0px
-        }
+            .row {
+                flex-direction: column-reverse;
+                margin: 30px 0;
+            }
 
-        .explore_wrapper a:hover {
-            background-color: rgba(88, 93, 192, 0.5);
-            color: rgba(255, 255, 255, 1);
-            box-shadow: rgba(166, 153, 234, 0.4) 0px 0px 30px 0px;
+            .logo {
+                width: 25px;
+                margin: 15px 0;
+            }
+
+            .navbar span {
+                display: none;
+            }
+
+            nav ul li {
+                margin-right: 0px;
+            }
+
+            nav ul li a {
+                font-size: 14px;
+            }
+
+            .signup {
+                padding: 4px 20px;
+                border-radius: 30px;
+                font-size: 14px;
+                margin-left: 5px;
+            }
+
+            .col-2 {
+                flex-basis: 100%;
+                margin-bottom: 50px;
+            }
+
+            .col-2 .home_hero {
+                padding-top: 20px;
+                width: 100%;
+                height: auto;
+            }
+
+            .login {
+                margin-right: 20px;
+            }
+
+            .color-box {
+                transform: translateX(75px);
+                border-radius: 60px 0 0 60px;
+            }
+
+            .col-1 {
+                flex-basis: 100%;
+            }
+
+            .col-1 h2 {
+                font-size: 30px;
+            }
+
+            .col-1 h3 {
+                font-size: 20px;
+            }
+
+            .col-1 p {
+                font-size: 16px;
+                margin-bottom: 50px;
+            }
+
+            .col-1 a {
+                width: 140px;
+                padding: 8px 60px;
+                margin-left: 20px;
+                font-size: 16px;
+            }
+
+            .background {
+                width: 50%;
+                height: auto;
+            }
+
+            .background1 {
+                width: 50%;
+                height: auto;
+
+            }
+
         }
-        
     </style>
+
 </head>
 
 <body>
-    <div class="header">
-        <div class="topright_wrapper">
-            <div class="login_and_signup">
-                <a class="login btn-glow" href="/login">Log in</a>
-                <a class="signup btn-glow" href="/register">Sign up</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="content">
-        <div class="text_wrapper">
-            <p>WELCOME TO OUR MARKETPLACE</p>
-            <a class="description">Amonze is the DSI's biggest puppies NFTs marketplace
-                because we are the only one.</a>
+    <div class="container">
+        <div class="navbar">
+            <img src="media/images/logo.png" class="logo">
+            <span>Amonze</span>
+            <nav clas="actionbtn">
+                <ul>
+                    <li><a class="login" href="/login" id="loginbtn">Log in</a></li>
+                    <li><a class="signup" href="/register" id="signupbtn">Sign up</a></li>
+                </ul>
+            </nav>
         </div>
 
         <img class="background" src="media/images/banner.jpg" alt="banner" />
         <img class="background1" src="media/images/banner2.jpg" alt="banner" />
 
-        <div class="explore_wrapper">
-            <a class="explore" href="/marketplace">Explore</a>
+        <div class="row">
+            <div class="col-1">
+                <h2>Amonze</h2>
+                <h3>the best NFTs Marketplace</h3>
+                <p>because we are the only one selling NFTs in DSI.</p>
+                <a href="/marketplace">Explore</a>
+            </div>
+            <div class="col-2">
+                <img src="media/images/home_hero.png" class="home_hero">
+                <div class="color-box"></div>
+                <!-- <div class="img2">
+                    <img src="media/images/2.png">
+                </div>
+                <div class="img3">
+                    <img src="media/images/3.png">-->
+            </div>
         </div>
     </div>
+    </div>
+    <script>
 
+        var user = '{{request.user}}'   
+        var loginbtn = document.getElementById('loginbtn')
+        var signupbtn = document.getElementById('signupbtn')
+
+        loginbtn.style.display = "flex";
+        signupbtn.style.display = "flex";
+
+        if (user != 'AnonymousUser') {
+            loginbtn.style.display = "none";
+            signupbtn.style.display = "none";
+        }
+
+        else {
+            loginbtn.style.display = "flex";
+            signupbtn.style.display = "flex";
+        }
+
+    </script>
 </body>
 
 </html>

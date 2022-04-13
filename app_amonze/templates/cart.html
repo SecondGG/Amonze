@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+            height: 96vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .cart_header{
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            font-size: 40px;
+            text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+
+        .cart_container {
+            padding-top: 20px;
+            padding-bottom: 175px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .item_wrapper {
+            margin: 20px;
+            background: white;
+            border-radius: 25px;
+            width: 850px;
+            height: 375px;
+            column-count: 2;
+        }
+
+        .item_img {
+            height: 100%;
+            border-radius: 25px;
+        }
+
+        .image_wrapper {
+            display: flex;
+        }
+
+        .image_wrapper a {
+            display: flex;
+            font-size: 24px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-left: 25px;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 80px rgba(166, 153, 234, 0.7), 0 0 32px rgba(88, 93, 192, 0.7);
+        }
+
+        .quantity {
+            position: relative;
+
+        }
+
+        .detail {
+            margin: 25px;
+            font-size: 30px;
+        }
+
+        button {
+            background-color: #A699EA;
+            color: black;
+            width: 75px;
+            font-size: 32px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: 0;
+        }
+
+        .checkout {
+            background-color: #585DC0;
+            color: white;
+            left: 0;
+            width: 100%;
+            bottom: 0;
+            position: fixed;
+            font-size: 30px;
+        }
+
+        .checkout p {
+            margin: 50px;
+            float: left;
+        }
+
+        .checkout h3 {
+            margin: 50px;
+            margin-right: 50px;
+            float: right;
+        }
+
+        @media only screen and (min-width:1024px) {
+            .cart_header{
+                font-size: 30px;
+            }
+
+            .cart_container {
+                padding-bottom: 100px;
+            }
+
+            .item_wrapper {
+                margin: 15px;
+                width: 550px;
+                height: 250px;
+            }
+
+            .detail {
+                font-size: 18px;
+            }
+
+            button {
+                width: 50px;
+                font-size: 20px;
+                border-radius: 7px;
+            }
+
+            .checkout {
+                font-size: 20px;
+            }
+
+            .checkout p {
+                margin: 25px;
+                margin-left: 100px;
+            }
+
+            .checkout h3 {
+                margin: 25px;
+                margin-right: 100px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="cart_header">
+        <h1>My Shopping Cart</h1>
+    </div>
+    <div class="cart_container">
+        {% for item in items %}
+        <div class="item_wrapper">
+            <img class="item_img" src="/media/{{ item.item.item_image }}">
+            <div class="detail">
+                <ul style="float: right;">x{{item.quantity}}</ul>
+                <h4>{{item.item.item_name}}</h4>
+                <span>${{item.item.price|floatformat:2}}</span>
+                <h4 style="color: #585DC0; text-align: right;">Total: ${{item.get_total|floatformat:2}}</h4>
+                <div class="quantity">
+                    <button data-product="{{item.item.item_id}}" data-action="add"
+                        class="btn add-btn update-cart">▲</button>
+                    <button data-product="{{item.item.item_id}}" data-action="remove"
+                        class="btn remove-btn update-cart">▼</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'checkout' %}">
+        <div class="checkout">
+            <p>Total: ${{ transaction.get_cart_total }}</p>
+            <h3>Checkout</h3>
+        </div>
+    </a>
+
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+</body>
+
+</html>

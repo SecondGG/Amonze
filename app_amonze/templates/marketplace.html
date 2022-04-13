@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/media/images/favicon.ico" />
     <title>&#6158; Amonze | Marketplace</title>
     <style>
@@ -25,13 +26,15 @@
 
         .market_header h2 {
             font-weight: 600;
-            font-size: 52px;
+            font-size: 60px;
             text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
             padding-bottom: 40px;
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
 
         .market_container {
-            padding: 50px;
+            padding: 10px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -40,18 +43,29 @@
         .item_wrapper {
             margin: 20px;
             background: white;
-            border-radius: 25px;
-            width: 256px;
+            border-radius: 30px;
+            width: 400px;
         }
 
-        .item_desc {
-            margin-bottom: 5%;
+        .item_wrapper a {
+            text-decoration: none;
+        }
+
+        .item_desc h3 {
             font-size: 24px;
+            font-weight: 500;
+            margin: 20px 0px;
+        }
+
+        .item_desc p {
+            font-size: 26px;
+            font-weight: 600;
+            margin: 20px 0px;
         }
 
         .item_img {
             width: 100%;
-            border-radius: 25px;
+            border-radius: 30px;
         }
 
         .image_wrapper {
@@ -70,28 +84,209 @@
             text-shadow: 0 0 80px rgba(166, 153, 234, 0.7), 0 0 32px rgba(88, 93, 192, 0.7);
         }
 
-        a:link {
+        .navbar {
+            margin: 10px;
+            width: 95%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 15px;
+            align-items: center;
+        }
+
+        .menu_button {
+            height: 40px;
+            display: none;
+            cursor: pointer;
+            opacity: 0.6;
+            filter: drop-shadow(0px 0px 4px rgba(166, 153, 234, 0.7));
+
+        }
+
+        .navbar a {
+            margin-left: 40px;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .navbar a:hover {
+            margin-left: 40px;
+            color: rgba(255, 255, 255, 1);
             text-decoration: none;
         }
 
-        a:visited {
-            text-decoration: none;
+        .home a {
+            margin-left: 10px;
         }
 
-        .hello {
-            color: white;
+        .home a:hover {
+            margin-left: 10px;
         }
 
+        .logo {
+            height: 35px;
+            cursor: pointer;
+            opacity: 0.55;
+            margin-top: 3px;
+            filter: drop-shadow(0px 0px 4px rgba(166, 153, 234, 0.7));
+        }
+
+        .logo:hover {
+            opacity: 0.7;
+            filter: drop-shadow(0px 0px 10px rgba(166, 153, 234, 0.8));
+        }
+
+
+        .background {
+            position: absolute;
+            width: 24vh;
+            height: 56vh;
+            filter: blur(150px);
+            z-index: -1;
+            top: 15vh;
+            left: 20vw;
+        }
+
+        .background1 {
+            position: absolute;
+            width: 18vh;
+            height: 60vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 10vh;
+            left: 40vw;
+            transform: rotate(20deg);
+        }
+
+
+        @media only screen and (max-width:700px) {
+            .market_header h2 {
+                font-size: 45px;
+                text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
+                padding: 0;
+                margin-top: 10px;
+            }
+
+            .item_img {
+                width: 100%;
+                border-radius: 18px;
+            }
+
+            .item_wrapper {
+                border-radius: 18px;
+            }
+
+            .home a {
+                margin: 0;
+                padding: 0;
+                height: max-content;
+
+            }
+
+            .logo {
+                height: 25px;
+                cursor: pointer;
+                opacity: 0.55;
+                margin-top: 3px;
+                filter: drop-shadow(0px 0px 2px rgba(166, 153, 234, 0.6));
+            }
+
+            .navbut {
+                background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+                width: max-content;
+                display: grid;
+                position: absolute;
+                top: 65px;
+                right: 0px;
+                z-index: 2;
+                justify-content: end;
+            }
+
+            .menu_button {
+                display: block;
+                height: 30px;
+            }
+
+            #menuList {
+                overflow: hidden;
+                transition: 0.5s;
+            }
+
+            .navbut a {
+                display: block;
+                margin-left: 0px;
+                padding: 8px 30px;
+                border-top: solid 1px rgba(88, 93, 192, 0.2);
+                border-bottom: solid 1px rgba(88, 93, 192, 0.2);
+                font-size: 18px;
+            }
+
+            .market_container {
+                padding: 1px;
+            }
+
+            .item_wrapper {
+                margin: 12px 8px;
+                width: 160px;
+            }
+
+            .item_desc ul {
+                padding: 0;
+                margin: 0;
+                margin-left: 18px;
+            }
+
+            .item_desc h3 {
+                font-size: 14px;
+                font-weight: 500;
+                margin: 0;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            .item_desc p {
+                font-size: 16px;
+                font-weight: 600;
+                margin: 0;
+                margin-bottom: 8px;
+            }
+
+            .background {
+                width: 50%;
+                height: auto;
+            }
+
+            .background1 {
+                width: 50%;
+                height: auto;
+
+            }
+        }
     </style>
 
 </head>
 
 <body>
-    <span class="hello">Hello, {{request.user}}</span>
-    <span><a href="/logout">Logout</a></span>
+    <div class="navbar">
+        <div class="home">
+            <a href="{% url 'home' %}">
+                <img src="media/images/left-arrow.png" href="{% url 'home' %}" class="logo">
+            </a>
+        </div>
+        <div class="navbut" id="menuList">
+            <a class='profile' href="/profile">My Profile</a>
+            <a class="cart" href="/cart">My Shopping Cart</a>
+            <a class="logout" href="/logout" id="logoutbtn">Logout</a>
+        </div>
+        <img src="media/images/menu_button.png" class="menu_button" onclick="toggglemenu()">
+    </div>
     <div class="market_header">
         <h2>MARKETPLACE</h2>
     </div>
+
+    <img class="background" src="media/images/banner.jpg" alt="banner" />
+    <img class="background1" src="media/images/banner2.jpg" alt="banner" />
 
     <div class="market_container">
         {% for item in items %}
@@ -108,7 +303,42 @@
         </div>
         {% endfor %}
     </div>
+    <script>
 
+        var menuList = document.getElementById("menuList");
+
+        menuList.style.maxHeight = "0px";
+
+        function toggglemenu() {
+
+            if (menuList.style.maxHeight == "0px") {
+                menuList.style.maxHeight = "max-content";
+            }
+
+            else {
+                menuList.style.maxHeight = "0px";
+            }
+
+        }
+
+    </script>
+
+    <script>
+
+        var user = '{{request.user}}'
+        var loginbtn = document.getElementById('logoutbtn')
+
+        logoutbtn.style.visibility = "visible";
+
+        if (user == 'AnonymousUser') {
+            logoutbtn.style.visibility = "hidden";
+        }
+
+        else {
+            logoutbtn.style.visibility = "visible";
+        }
+
+    </script>
 </body>
 
 </html>

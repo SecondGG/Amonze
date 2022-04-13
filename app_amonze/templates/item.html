@@ -1,102 +1,327 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/media/images/favicon.ico" />
     <title>&#6158; Amonze | {{ item.item_name }}</title>
+
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
         body {
             font-family: 'Poppins', sans-serif;
-            font-size: 32px;
-            font-weight: 400;
-            background-color: black;
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+            height: 96vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .header {
+            margin-top: 25px;
+            margin-left: 20px;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3px 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 9999px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .header a:hover {
+            color: rgba(255, 255, 255, 1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .content {
             display: flex;
             flex-wrap: wrap;
-            place-content: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navbar {
+            background-color: #333;
+            position: fixed;
+            visibility: hidden;
+            /* Set the navbar to fixed position */
+            bottom: 0;
+            /* Position the navbar at the top of the page */
+            width: 100%;
+            /* Full width */
+            display: flex;
+            justify-content: center;
+            filter: drop-shadow(0px -2px 15px rgba(0, 0, 0, 0.25));
+        }
+
+        .navbar button {
+            font-family: 'Poppins', sans-serif;
+            display: block;
+            color: rgba(88, 93, 192, 1);
+            text-align: center;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 1);
+            border: 0;
+            padding: 10px 0;
+            width: 100vw;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .navbar button:hover {
+            background: #ddd;
+            color: black;
+            cursor: pointer;
         }
 
         .item_container {
-            width: max-content;
             background-color: white;
-            color: black;
-            border-radius: 0px 0px 60px 60px;
+            border-radius: 40px;
+            height: 650px;
+            overflow: hidden;
+            align-items: center;
+            align-content: center;
+        }
 
+        img {
+            width: 500px;
+        }
+
+        .name_wrapper {
+            margin-left: 40px;
+        }
+
+        .name_wrapper p {
+            font-weight: 500;
+            font-size: 32px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .price_wrapper {
+            margin-right: 10px;
+        }
+
+        .price_wrapper p {
+            margin-right: 40px;
+            margin-top: 20px;
+            font-size: 28px;
+            font-weight: 600;
+            color: rgba(88, 93, 192, 1);
+            text-align: end;
+        }
+
+
+        .desc_container {
+            background-color: white;
+            width: 500px;
+            height: 650px;
+            border-radius: 50px;
+            margin: 50px;
+        }
+
+        .desc_wrapper {
+            margin: 50px;
+        }
+
+        .desc_wrapper p {
+            font-weight: 600;
+            font-size: 24px;
+            color: rgba(88, 93, 192, 1);
+        }
+
+        .desc {
+            font-size: 20px;
+        }
+
+        .interact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            top: 180px;
+        }
+
+        .interact button {
+            font-family: 'Poppins', sans-serif;
+            padding: 12px 48px;
+            border-radius: 40px;
+            background: rgba(88, 93, 192, 1);
+            color: white;
+            border: 0;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .interact button:hover {
+            background: rgba(255, 255, 255, 1);
+            color: rgba(88, 93, 192, 1);
+            border: 2px solid rgba(88, 93, 192, 1);
+            cursor: pointer;
+        }
+
+        .background {
+            position: absolute;
+            width: 40vh;
+            height: 56vh;
+            filter: blur(150px);
+            z-index: -1;
+            top: 15vh;
+            left: 10vw;
+        }
+
+        .background1 {
+            position: absolute;
+            width: 18vh;
+            height: 60vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 10vh;
+            left: 70vw;
+            transform: rotate(20deg);
         }
 
         .image_wrapper {
             display: flex;
             flex-wrap: wrap;
-            place-content: center;
-            margin-bottom: 30px;
         }
 
-        img {
-            width: 100%;
-            box-shadow: inset 0px -2px 200px rgba(0, 0, 0, 1);
-        }
+        @media only screen and (max-width:700px) {
+            
+            .header {
+                margin-top: 10px;
+                margin-left: 10px;
+                margin-bottom: 20px;
+                position: fixed;
+            }
 
-        .name_wrapper p {
-            margin-left: 50px;
-            font-size: 40px;
-        }
+            .header a {
+                text-decoration: none;
+                font-size: 20px;
+                font-weight: 400;
+                padding: 3px 12px;
+            }
 
-        .price_wrapper {
-            margin-bottom: 40px;
-        }
 
-        .price_wrapper p {
-            margin-left: 50px;
-            font-weight: 600;
-            color: rgba(88, 93, 192, 1);
-        }
+            .item_container {
+                border-radius: 20px;
+                height: 65%;
+            }
 
-        .desc_container {
-            margin-top: 50px;
-            width: max-content;
-            background-color: white;
-            color: black;
-            border-top-left-radius: 40px;
-            border-top-right-radius: 40px;
-            height: max-content;
-            padding-bottom: 30%;
-        }
+            img {
+                width: 100vw;
+            }
 
-        .desc_wrapper {
-            margin: 50px;
-            font-size: 20px;
-        }
+            .desc_container {
+                margin: 0px;
+                margin-top: 20px;
+                border-radius: 20px;
+                width: 100vw;
+                height: 90vh;
+            }
 
-        .desc_wrapper p{
-            font-weight: 600;
-            font-size: 36px;
-            margin-bottom: 50px;
+            .background1{
+                display: none;
+            }
+
+            .desc_wrapper {
+                margin: 20px;
+            }
+
+            .navbar {
+                visibility: visible;
+                width: 100vw;
+            }
+            .name_wrapper {
+                margin-left: 20px;
+            }
+
+            .name_wrapper p {
+                font-weight: 400;
+                font-size: 28px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            .price_wrapper {
+                margin-left: 20px;
+            }
+
+            .interact{
+                visibility: hidden;
+            }
+
+            .price_wrapper p {
+                margin-left: 0px;
+                margin-top: 20px;
+                font-size: 24px;
+                font-weight: 600;
+                text-align: start;
+            }
         }
     </style>
 </head>
 
 <body>
-
-    <div class="item_container">
-        <div class="image_wrapper">
-            <img class="item_img" src="/media/{{ item.item_id }}.png">
-        </div>
-        <div class="name_wrapper">
+    <div class="header">
+        <a href="{% url 'marketplace' %}"><</a>
+    </div>
+    <img class="background" src="/media/images/banner.jpg" alt="banner" />
+    <img class="background1" src="/media/images/banner2.jpg" alt="banner" />
+    <div class="content">
+        <div class="item_container">
+            <div class="image_wrapper">
+                <img class="item_img" src="/media/{{ item.item_id }}.png">
+            </div>
+            <div class="name_wrapper">
                 <p>{{ item.item_name }}</p>
+            </div>
+            <div class="price_wrapper">
+                <p> ${{ item.price }} </p>
+            </div>
         </div>
-        <div class="price_wrapper">
-           <p> ${{ item.price }} </p>
+        <div class="desc_container">
+            <div class="desc_wrapper">
+                <p>Description :</p>
+                <div class="desc">&ensp;&ensp;{{ item.description }}</div>
+                <div class="interact">
+                    <button data-product="{{ item.item_id }}" data-action="add" class="btn add-btn update-cart">Add to
+                        Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="navbar">
+            <button data-product="{{ item.item_id }}" data-action="add" class="btn add-btn update-cart">Add to
+                Cart</button>
         </div>
     </div>
-    <div class="desc_container">
-        <div class="desc_wrapper">
-            <p>Description :</p>
-            <div class="desc">&ensp;&ensp;{{ item.description }}</div>
-        </div>
-    </div>
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 
 </body>
 

@@ -2,9 +2,10 @@ from audioop import reverse
 from http.client import HTTPResponse
 from multiprocessing import context
 import re
+from typing import OrderedDict
 from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
-from app_amonze.models import Customer, Item
+from app_amonze.models import Customer, Item, Transaction, TransactionItem, ShippingAddress
 from app_amonze.forms import SignUpForm
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
@@ -12,6 +13,8 @@ from app_amonze.forms import ProfileForm, CustomerForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
+from django.http import JsonResponse
+import json
 
 
 # Create your views here.
@@ -52,7 +55,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 def signup(request):
     if request.user.is_authenticated:
@@ -92,3 +95,63 @@ def profile(request):
 
     context={'form':form}
     return render(request, 'profile.html', context)
+
+def cart(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
+        items = TransactionItem.objects.filter(transaction=transactions)
+    else:
+        items = []
+        transactions = {'get_cart_total':0, 'shipping':False}
+    context = {'items':items, 'transaction':transactions}
+    return render(request, 'cart.html', context)
+
+def checkout(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
+        items = TransactionItem.objects.filter(transaction=transactions)
+    else:
+        items = []
+        transactions = {'get_cart_total':0, 'shipping':False}
+    context = {'items':items, 'transaction':transactions}
+    return render(request, 'checkout.html', context)
+
+def updateItem(request):
+    data = json.loads(request.body)
+    itemId = data['itemId']
+    action = data['action']
+
+    print('Action:', action)
+    print('itemId:', itemId)
+
+    customer = request.user.customer
+    item = Item.objects.get(item_id=itemId)
+    transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
+    transactionItems, created = TransactionItem.objects.get_or_create(transaction=transactions, item=item)
+    
+    if action == 'add':
+        transactionItems.quantity = (transactionItems.quantity + 1)
+    elif action == 'remove':
+        transactionItems.quantity = (transactionItems.quantity - 1)
+    
+    transactionItems.save()
+
+    if transactionItems.quantity <= 0:
+        transactionItems.delete()
+    
+    return JsonResponse('Item was added', safe=False)
+
+def processOrder(request):
+    print('Data:', request.body)
+    data = json.loads(request.body)
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
+        total = float(data['form']['total']) 
+
+        if total == transactions.get_cart_total:
+            transactions.complete = True
+        transactions.save()
+    return JsonResponse('Payment Completed', safe=False)

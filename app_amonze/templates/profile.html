@@ -8,7 +8,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-image: linear-gradient(to top left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
             height: 96vh;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -39,7 +39,7 @@
             margin-top: 5vh;
             margin-left: 2vh;
             margin-right: 2vh;
-            filter: drop-shadow(0px 0px 3vh rgba(255, 255, 255, 0.35));
+            filter: drop-shadow(0px 0px 2vh rgba(255, 255, 255, 0.2));
         }
 
         form {
@@ -72,10 +72,24 @@
         .row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
-            padding: 20px;
+            margin-bottom: 2vh;
+            padding: 25px 45px;
             background: rgba(23, 21, 55, 0.5);
+<<<<<<< HEAD
             border-radius: 10px
+=======
+            border-radius: 2vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .label {
+            font-weight: 500;
+        }
+
+
+        .field input{
+            font-weight: 300;
+>>>>>>> 1ae9219136876c25e9c175fcaab946746774e937
         }
 
 <<<<<<< HEAD
@@ -87,7 +101,44 @@
         }
 
         .row input {}
+<<<<<<< HEAD
 >>>>>>> d1edc18e9ae08353f70e71395a3530c934bfea3a
+=======
+
+        .background {
+            position: absolute;
+            width: 24vh;
+            height: 56vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 15vh;
+            left: 20vw;
+        }
+
+        .background1 {
+            position: absolute;
+            width: 18vh;
+            height: 60vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 10vh;
+            left: 50vw;
+            transform: rotate(20deg);
+        }
+
+        @media only screen and (max-width:700px) {
+            .background {
+                width: 40%;
+                height: auto;
+            }
+
+            .background1 {
+                width: 40%;
+                height: auto;
+
+            }
+        }
+>>>>>>> 1ae9219136876c25e9c175fcaab946746774e937
     </style>
 </head>
 
@@ -98,6 +149,7 @@
             <a class="back_button" href="/marketplace">Back</a>
         </div>
     </div>
+
     <div class="profile_wrapper">
         <div class="image_wrapper">
             <img class="profile-pic" src="{{request.user.customer.profile_pic.url}}">
@@ -130,8 +182,8 @@
                     -->
                     {% for field in form %}
                     <div class="row">
-                        <span>{{ field.label }}:</span>
-                        <span>{{ field }}</span>
+                        <span class="label">{{ field.label }}:</span>
+                        <span class="field">{{ field }}</span>
                     </div>
                     {% endfor %}
                     <!--
