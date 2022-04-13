@@ -51,13 +51,13 @@
             text-decoration: none;
         }
 
-        .item_desc h3{
+        .item_desc h3 {
             font-size: 24px;
             font-weight: 500;
             margin: 20px 0px;
         }
 
-        .item_desc p{
+        .item_desc p {
             font-size: 26px;
             font-weight: 600;
             margin: 20px 0px;
@@ -131,10 +131,33 @@
             filter: drop-shadow(0px 0px 4px rgba(166, 153, 234, 0.7));
         }
 
-        .logo:hover{
+        .logo:hover {
             opacity: 0.7;
             filter: drop-shadow(0px 0px 10px rgba(166, 153, 234, 0.8));
         }
+
+
+        .background {
+            position: absolute;
+            width: 24vh;
+            height: 56vh;
+            filter: blur(150px);
+            z-index: -1;
+            top: 15vh;
+            left: 20vw;
+        }
+
+        .background1 {
+            position: absolute;
+            width: 18vh;
+            height: 60vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 10vh;
+            left: 40vw;
+            transform: rotate(20deg);
+        }
+
 
         @media only screen and (max-width:700px) {
             .market_header h2 {
@@ -148,16 +171,24 @@
                 width: 100%;
                 border-radius: 18px;
             }
-            
-            .item_wrapper{
+
+            .item_wrapper {
                 border-radius: 18px;
             }
 
-            .home a{
+            .home a {
                 margin: 0;
                 padding: 0;
                 height: max-content;
 
+            }
+
+            .logo {
+                height: 35px;
+                cursor: pointer;
+                opacity: 0.55;
+                margin-top: 3px;
+                filter: drop-shadow(0px 0px 2px rgba(166, 153, 234, 0.6));
             }
 
             .navbut {
@@ -218,6 +249,17 @@
                 margin: 0;
                 margin-bottom: 8px;
             }
+
+            .background {
+                width: 50%;
+                height: auto;
+            }
+
+            .background1 {
+                width: 50%;
+                height: auto;
+
+            }
         }
     </style>
 
@@ -240,6 +282,9 @@
     <div class="market_header">
         <h2>MARKETPLACE</h2>
     </div>
+
+    <img class="background" src="media/images/banner.jpg" alt="banner" />
+    <img class="background1" src="media/images/banner2.jpg" alt="banner" />
 
     <div class="market_container">
         {% for item in items %}
