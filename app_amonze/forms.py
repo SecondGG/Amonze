@@ -20,7 +20,8 @@ class ProfileForm(forms.ModelForm):
         fields = ['profile_pic', 'firstname','lastname','date_of_birth','email','address','postcode']
 
 class CustomerForm(ModelForm):
+    profile_pic = forms.ImageField(widget=forms.FileInput,)
     class Meta:
         model = Customer
         fields = '__all__'
-        exclude = ['user', 'profile_pic', 'date_of_birth']
+        exclude = ['user', 'date_of_birth']

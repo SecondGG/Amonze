@@ -110,6 +110,8 @@ def profile(request):
         form = CustomerForm(request.POST, request.FILES, instance=customer)
         if form.is_valid():
             form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('profile')
 
     context={'form':form}
     return render(request, 'profile.html', context)
