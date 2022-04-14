@@ -21,21 +21,36 @@ import json
 def home(request):
     return render(request, 'home.html')
 
+
 def marketplace(request):
     items = Item.objects.all()
-    context = { 'items':items }
+    context = {'items': items}
     return render(request, 'marketplace.html', context)
+
 
 def item(request, item_id):
     item = Item.objects.get(item_id=item_id)
-    context={'item': item}
+    context = {'item': item}
     return render(request, 'item.html', context)
+
 
 def register(request):
     return render(request, 'register.html')
 
+
 def register_detail(request):
-    return render(request, 'register_detail.html')    
+    customer = request.user.customer
+    form = CustomerForm(instance=customer)
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Account created')
+            return redirect('login')
+
+    context = {'form': form}
+    return render(request, 'register_detail.html', context)
+
 
 def loginPage(request):
     if request.method == 'POST':
@@ -46,16 +61,18 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('marketplace')
+            return redirect('profile')
         else:
             messages.info(request, 'Username or password is in correct.')
 
     context = {}
-    return render(request, 'login.html', context)   
+    return render(request, 'login.html', context)
+
 
 def logoutUser(request):
     logout(request)
     return redirect('home')
+
 
 def signup(request):
     if request.user.is_authenticated:
@@ -84,7 +101,8 @@ def signup(request):
             'user':request.user
             }
         return render(request, 'profile.html', context) """
-    
+
+@login_required(login_url='login') 
 def profile(request):
     customer = request.user.customer 
     form = CustomerForm(instance=customer)
@@ -96,6 +114,7 @@ def profile(request):
     context={'form':form}
     return render(request, 'profile.html', context)
 
+@login_required(login_url='login') 
 def cart(request):
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -107,6 +126,7 @@ def cart(request):
     context = {'items':items, 'transaction':transactions}
     return render(request, 'cart.html', context)
 
+@login_required(login_url='login') 
 def checkout(request):
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -118,6 +138,7 @@ def checkout(request):
     context = {'items':items, 'transaction':transactions}
     return render(request, 'checkout.html', context)
 
+@login_required(login_url='login') 
 def updateItem(request):
     data = json.loads(request.body)
     itemId = data['itemId']
@@ -143,6 +164,7 @@ def updateItem(request):
     
     return JsonResponse('Item was added', safe=False)
 
+@login_required(login_url='login') 
 def processOrder(request):
     print('Data:', request.body)
     data = json.loads(request.body)

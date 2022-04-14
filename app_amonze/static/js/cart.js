@@ -8,7 +8,7 @@ for (var i = 0; i < updateBtn.length; i++) {
 
         console.log('User :', user)
         if(user === 'AnonymousUser'){
-            console.log('Not logged in')
+            console.log('Not logged in');
         }else{
             updateUserTransaction(itemId, action)
         }

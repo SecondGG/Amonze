@@ -7,12 +7,12 @@ class Customer (models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     customer_id = models.BigAutoField(primary_key=True)
     profile_pic = models.ImageField(default="default_profile_pic.png",null=True, blank=True)
-    firstname = models.CharField(max_length=50, null=True)
-    lastname = models.CharField(max_length=50, null=True)
-    date_of_birth = models.DateField(null=True)
-    email = models.EmailField(unique=True)
-    address = models.CharField(max_length=300,null=True)
-    postcode = models.CharField(max_length=5,null=True)
+    firstname = models.CharField(max_length=50, null=True, blank=True)
+    lastname = models.CharField(max_length=50, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    address = models.CharField(max_length=300,null=True, blank=True)
+    postcode = models.CharField(max_length=5,null=True, blank=True)
     
     def __str__(self):
         return "%s %s %s"%(self.pk, self.user, self.firstname)

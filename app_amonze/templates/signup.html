@@ -11,11 +11,12 @@
 <body>
     <form method="POST" action="">
         {% for field in form %}
+        {% csrf_token %}
         {{ field.label }}
         {{ field }}
         {% endfor %}
         {{form.errors}}
-        <input type="submit" name="Create User">
+        <input type="submit" name="Create User" value="Continue">
     </form>
 </body>
 
