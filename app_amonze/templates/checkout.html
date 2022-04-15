@@ -33,11 +33,7 @@
             height: 200px;
         }
 
-        .address_container{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+
     </style>
 </head>
 
@@ -52,10 +48,7 @@
         <h3>${{item.get_total|floatformat:2}}</h3>
         {% endfor %}
     </div>
-    <div class="address_container">
-        <h3 class="address_fname">Firstname: </h3>
-        <span>{{user.customer.firstname}}</span>
-    </div>
+
     <div class="eth_pay">
         <span>or pay with</span>
         <a class="eth_pay" href="{% url 'eth_pay' %}">ETH</a>
