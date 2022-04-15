@@ -27,33 +27,276 @@
         }
         const csrftoken = getCookie('csrftoken');
     </script>
-    
+
     <style>
         img {
             height: 200px;
+        }
+
+        .checkout_header {
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            font-size: 40px;
+            text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+            height: 96vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+
+        .checkout_container {
+            padding-top: 20px;
+            padding-bottom: 175px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .item_wrapper {
+            margin: 20px;
+            background: white;
+            border-radius: 25px;
+            width: 850px;
+            height: 375px;
+            display: flex;
+        }
+
+        .item_img {
+            height: 100%;
+            border-radius: 25px;
+        }
+
+        .item_detail {
+            width: 425px;
+            height: 325px;
+            margin: 25px;
+            font-size: 30px;
+            border-radius: 25px;
+
+        }
+
+        .item_name {
+            font-size: 45px;
+        }
+
+        .item_quantity {
+            font-size: 45px;
+        }
+
+        .item_total {
+            font-size: 45px;
+        }
+
+        .horizon_line {
+            border-top: 4px solid rgb(255, 255, 255);
+            border-radius: 4px;
+        }
+
+        .address_header {
+            font-size: 60px;
+            color: white;
+            padding: 25px;
+        }
+
+        .info_container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background-color: #0b0a1b;
+            width: 850px;
+            height: fit-content;
+            margin: 0px 57px 25px;
+            border-radius: 25px;
+        }
+
+        .info_label {
+            padding-left: 15px;
+            font-weight: bold;
+            font-size: 40px;
+            color: whitesmoke;
+        }
+
+        .info {
+            padding-right: 15px;
+            font-size: 40px;
+            color: whitesmoke;
+        }
+
+        .paybox {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            height: 100px;
+            width: 100%;
+            background-color: #A699EA;
+            position: fixed;
+            bottom: 0;
+        }
+
+        button {
+            width: 50%;
+            font-size: 40px;
+            background-color: #A699EA;
+            border: 0;
+        }
+
+        .eth_pay {
+            width: 50%;
+            font-size: 40px;
+            line-height: 100px;
+            text-align: center;
+            border-left: 4px;
+        }
+
+        @media only screen and (min-width:1000px) {
+
+            .checkout_container {
+                float: left;
+                width: 50%;
+                padding-top: 20px;
+                padding-bottom: 175px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .item_wrapper {
+                margin: 20px;
+                background: white;
+                border-radius: 25px;
+                width: 400px;
+                height: 200px;
+                display: flex;
+            }
+
+            .item_detail {
+                width: 200px;
+                height: 150px;
+                margin: 25px;
+                font-size: 15px;
+                border-radius: 25px;
+
+            }
+
+            .item_name {
+                font-size: 20px;
+            }
+
+            .item_quantity {
+                font-size: 20px;
+            }
+
+            .item_total {
+                font-size: 20px;
+            }
+
+            .address_header {
+                font-size: 30px;
+                color: white;
+                padding: 25px;
+            }
+
+            .info_container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                background-color: #0b0a1b;
+                width: 425px;
+                height: fit-content;
+                margin: 0px 57px 25px;
+                border-radius: 25px;
+            }
+
+            .info_label {
+                padding-left: 15px;
+                font-weight: bold;
+                font-size: 20px;
+                color: whitesmoke;
+            }
+
+            .info {
+                padding-right: 15px;
+                font-size: 20px;
+                color: whitesmoke;
+            }
+
+            .paybox {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                height: 100px;
+                width: 40%;
+                position: relative;
+                bottom: auto;
+                border-radius: 25px;
+            }
+
+            button {
+                width: 50%;
+                font-size: 20px;
+                background-color: #A699EA;
+                border: 0;
+                border-right: 4px;
+                border-radius: 25px;
+            }
+
+            .eth_pay {
+                width: 50%;
+                font-size: 20px;
+                line-height: 100px;
+                text-align: center;
+                border-left: 4px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h2>Total: ${{ transaction.get_cart_total }}</h2>
-    <div class="cart_container">
+    <div class="checkout_header">
+        <h2> Payment </h2>
+    </div>
+    </div>
+    <div class="checkout_container">
         {% for item in items %}
-        <div class="item_img">
-            <img src="/media/{{ item.item.item_image }}">
+        <div class="item_wrapper">
+            <img class="item_img" src="/media/{{ item.item.item_image }}">
+            <div class="item_detail">
+                <h3 class="item_name">{{item.item.item_name}}</h3>
+                <p class="item_quantity">จำนวน : {{item.quantity}} ตัว</p>
+                <p class="item_total">ราคารวม : ${{item.get_total|floatformat:2}}</p>
+            </div>
         </div>
-        <p>{{item.quantity}}</p>
-        <h3>${{item.get_total|floatformat:2}}</h3>
         {% endfor %}
     </div>
-    <div class="eth_pay">
-        <span>or pay with</span>
-        <a class="eth_pay" href="{% url 'eth_pay' %}">ETH</a>
-    </div>
-    <div class="payment">
-        <button id="make-payment">Make Payment</button>
-    </div>
 
+    <div class="res_info">
+        <h2 class="address_header">Send To:</h2>
+        <div class="info_container">
+            <p class="info_label">Firstname: </p>
+            <p class="info">{{user.customer.firstname}}</p>
+        </div>
+        <div class="info_container">
+            <p class="info_label">Lastname: </p>
+            <p class="info">{{user.customer.lastname}}</p>
+        </div>
+        <div class="info_container">
+            <p class="info_label">Address: </p>
+            <p class="info">{{user.customer.address}}</p>
+        </div>
+    </div>
+    <div class="paybox">
+        <button id="make-payment">Make Payment</button>
+        <a class="eth_pay" href="{% url 'eth_pay' %}">Pay With ETH</a>
+    </div>
     <script type="text/javascript">
 
         document.getElementById('make-payment').addEventListener('click', function (e) {
@@ -70,7 +313,7 @@
                 'total': total,
             }
 
-            if(user == 'AnonymousUser'){
+            if (user == 'AnonymousUser') {
                 console.log('Not logged in')
             }
 
@@ -83,7 +326,7 @@
                 },
                 body: JSON.stringify({ 'form': userFormData })
             })
-                .then((response) => 
+                .then((response) =>
                     response.json()
                 )
 
