@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="shortcut icon" href="/media/images/favicon.ico" />
+    <title>&#6158; Amonze | Pay with ETH</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <div class="col">
+                <div>
+                    <button id="access_acount" class="btn btn-dark">เชื่อมต่อWallet</button>
+                    <button id="acc_about" class="btn btn-danger" style="border-radius:30px;">บัญชีของคุณ : </button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <div class="card w-50" style="margin:auto;">
+                    <div class="card-body">
+                        <div id="alert_box" style="display:none;"></div>
+                        <img src="/media/images/home_hero.png" style="width:auto;height:250px;">
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-sm btn-primary" style="border-radius:30px;"> บัญชีของเรา :
+                                    0xfCc0aE4EE41910Ec5D569228e45565648Bee917A</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col col-4">
+                                <button id="make-payment" class="btn">Pay with ETH</button>
+                                <p>Total: ${{transaction.get_cart_total}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var d = document;
+
+        d.querySelector("#access_acount").addEventListener("click", async () => {
+            if (typeof ethereum != undefined) {
+                await ethereum.request({ method: "eth_requestAccounts" });
+                d.querySelector("#acc_about").innerHTML = "บัญชีของคุณ : " + ethereum.selectedAddress;
+            }
+        });
+
+        ethereum.on("accountsChanged", (acc) => {
+            d.querySelector("#acc_about").innerHTML = "บัญชีของคุณ : " + ethereum.selectedAddress;
+        });
+
+        d.querySelector("#make-payment").addEventListener("click", () => {
+            let price = '{{transaction.get_cart_total}}';
+            if (price == "") { setAlert("โปรดกรอกจำนวนให้ถูกต้อง", "danger"); return; }
+            ethereum.request({
+                method: "eth_sendTransaction",
+                params: [{
+                    from: ethereum.selectedAddress,
+                    to: "0xfCc0aE4EE41910Ec5D569228e45565648Bee917A",
+                    value: convertToWei(Number(price))// 1eth = 10^18 wei
+                }]
+            })
+                .then((txtHash) => {
+                    setAlert("Thank you! (txtHash :" + txtHash + " )", "success");
+                    submitFormData();
+                })
+
+                .catch((err) => {
+                    console.log(err);
+                    switch (err.code) {
+                        case -32602:
+                            setAlert("โปรดเชื่อมต่อกับWallet!", "danger");
+                            break;
+                        default:
+                            setAlert("เกิดข้อผิดพลาดไม่ทราบสาเหตุ!", "danger");
+                            break;
+                    }
+                })
+        });
+
+        var total = '{{ transaction.get_cart_total }}'
+
+        function submitFormData(total) {
+            var total = '{{ transaction.get_cart_total }}'
+            console.log('total :', total)
+
+            var userFormData = {
+                'total': total,
+            }
+
+            if (user == 'AnonymousUser') {
+                console.log('Not logged in')
+            }
+
+            var url = '/process_order/'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({ 'form': userFormData })
+            })
+                .then((response) =>
+                    response.json()
+                )
+
+                .then((data) => {
+                    console.log('Success: ', data);
+                    alert('Transaction completed');
+                    window.location.href = "{% url 'marketplace' %}";
+                })
+        }
+
+        function convertToWei(price) {
+            return "0x" + Number((price / 3000) * 1e+18).toString(16);
+        }
+
+        function setAlert(txt, alertColor) {
+            let alertBox = d.querySelector("#alert_box");
+            alertBox.style = "display:block";
+            alertBox.innerHTML = txt;
+            alertBox.className = "alert alert-" + alertColor;
+        }
+    </script>
+</body>
+
+</html>

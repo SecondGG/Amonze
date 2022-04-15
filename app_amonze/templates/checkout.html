@@ -4,6 +4,8 @@
 <html lang="en">
 
 <head>
+    <link rel="shortcut icon" href="/media/images/favicon.ico" />
+    <title>&#6158; Amonze | Checkout</title>
 
     <script type="text/javascript">
         var user = '{{request.user}}'
@@ -46,7 +48,7 @@
     </div>
     <div class="eth_pay">
         <span>or pay with</span>
-        <a class="eth_pay" href="/eth_pay">ETH</a>
+        <a class="eth_pay" href="{% url 'eth_pay' %}">ETH</a>
     </div>
     <div class="payment">
         <button id="make-payment">Make Payment</button>

@@ -86,10 +86,11 @@ def signup(request):
                 messages.success(request, 'Account created')
                 return redirect('login')
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'signup.html', context)
 
-"""def ProfilePage(request): 
+
+"""def ProfilePage(request):
     instance = get_object_or_404(Customer, user=request.user)
     form = ProfileForm(request.POST or None, instance=instance)
     if form.is_valid():
@@ -102,9 +103,10 @@ def signup(request):
             }
         return render(request, 'profile.html', context) """
 
-@login_required(login_url='login') 
+
+@login_required(login_url='login')
 def profile(request):
-    customer = request.user.customer 
+    customer = request.user.customer
     form = CustomerForm(instance=customer)
     if request.method == 'POST':
         form = CustomerForm(request.POST, request.FILES, instance=customer)
@@ -113,34 +115,39 @@ def profile(request):
             messages.success(request, f'Your account has been updated!')
             return redirect('profile')
 
-    context={'form':form}
+    context = {'form': form}
     return render(request, 'profile.html', context)
 
-@login_required(login_url='login') 
+
+@login_required(login_url='login')
 def cart(request):
     if request.user.is_authenticated:
         customer = request.user.customer
-        transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
+        transactions, created = Transaction.objects.get_or_create(
+            customer=customer, complete=False)
         items = TransactionItem.objects.filter(transaction=transactions)
     else:
         items = []
-        transactions = {'get_cart_total':0, 'shipping':False}
-    context = {'items':items, 'transaction':transactions}
+        transactions = {'get_cart_total': 0, 'shipping': False}
+    context = {'items': items, 'transaction': transactions}
     return render(request, 'cart.html', context)
 
-@login_required(login_url='login') 
+
+@login_required(login_url='login')
 def checkout(request):
     if request.user.is_authenticated:
         customer = request.user.customer
-        transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
+        transactions, created = Transaction.objects.get_or_create(
+            customer=customer, complete=False)
         items = TransactionItem.objects.filter(transaction=transactions)
     else:
         items = []
-        transactions = {'get_cart_total':0, 'shipping':False}
-    context = {'items':items, 'transaction':transactions}
+        transactions = {'get_cart_total': 0, 'shipping': False}
+    context = {'items': items, 'transaction': transactions}
     return render(request, 'checkout.html', context)
 
-@login_required(login_url='login') 
+
+@login_required(login_url='login')
 def updateItem(request):
     data = json.loads(request.body)
     itemId = data['itemId']
@@ -151,43 +158,61 @@ def updateItem(request):
 
     customer = request.user.customer
     item = Item.objects.get(item_id=itemId)
-    transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
-    transactionItems, created = TransactionItem.objects.get_or_create(transaction=transactions, item=item)
-    
+    transactions, created = Transaction.objects.get_or_create(
+        customer=customer, complete=False)
+    transactionItems, created = TransactionItem.objects.get_or_create(
+        transaction=transactions, item=item)
+
     if action == 'add':
         transactionItems.quantity = (transactionItems.quantity + 1)
     elif action == 'remove':
         transactionItems.quantity = (transactionItems.quantity - 1)
-    
+
     transactionItems.save()
 
     if transactionItems.quantity <= 0:
         transactionItems.delete()
-    
+
     return JsonResponse('Item was added', safe=False)
 
-@login_required(login_url='login') 
+
+@login_required(login_url='login')
 def processOrder(request):
     print('Data:', request.body)
     data = json.loads(request.body)
     if request.user.is_authenticated:
         customer = request.user.customer
-        transactions, created = Transaction.objects.get_or_create(customer=customer, complete = False)
-        total = float(data['form']['total']) 
+        transactions, created = Transaction.objects.get_or_create(
+            customer=customer, complete=False)
+        total = float(data['form']['total'])
 
         if total == transactions.get_cart_total:
             transactions.complete = True
         transactions.save()
     return JsonResponse('Payment Completed', safe=False)
 
-@login_required(login_url='login') 
+
+@login_required(login_url='login')
 def owned(request):
     if request.user.is_authenticated:
         customer = request.user.customer
-        transactions= Transaction.objects.filter(customer=customer, complete = True)
+        transactions = Transaction.objects.filter(
+            customer=customer, complete=True)
         items = TransactionItem.objects.filter(transaction__in=transactions)
     else:
         items = []
-        transactions = {'get_cart_total':0}
-    context = {'items':items, 'transaction':transactions}
+        transactions = {'get_cart_total': 0}
+    context = {'items': items, 'transaction': transactions}
     return render(request, 'owned.html', context)
+
+
+@login_required(login_url='login')
+def eth_pay(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        transactions = Transaction.objects.get(
+            customer=customer, complete=False)
+    else:
+        transactions = {'get_cart_total':0, 'shipping':False}
+    context = {'transaction':transactions}
+    return render(request, 'eth_pay.html', context)
