@@ -25,8 +25,6 @@ urlpatterns = [
     path('marketplace', views.marketplace, name  = 'marketplace'),
     path('item/<int:item_id>', views.item,  name = 'item'),
     path('admin/', admin.site.urls),
-    path('register', views.register, name = 'register'),
-    path('register_detail', views.register_detail, name = 'register_detail'),
     path('login/', views.loginPage, name = 'login'),
     path('logout/', views.logoutUser, name = 'logout'),
     path('signup/', views.signup, name = 'signup'),
@@ -34,7 +32,8 @@ urlpatterns = [
     path('cart/', views.cart, name ='cart'),
     path('checkout/', views.checkout, name='checkout'),
     path('update_item/', views.updateItem, name="update_item"),
-    path('process_order/', views.processOrder, name="process_order")
+    path('process_order/', views.processOrder, name="process_order"),
+    path('owned/', views.owned, name = 'owned'),
 ]
 
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

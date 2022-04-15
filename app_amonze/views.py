@@ -179,3 +179,15 @@ def processOrder(request):
             transactions.complete = True
         transactions.save()
     return JsonResponse('Payment Completed', safe=False)
+
+@login_required(login_url='login') 
+def owned(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        transactions= Transaction.objects.filter(customer=customer, complete = True)
+        items = TransactionItem.objects.filter(transaction__in=transactions)
+    else:
+        items = []
+        transactions = {'get_cart_total':0}
+    context = {'items':items, 'transaction':transactions}
+    return render(request, 'owned.html', context)

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/media/images/favicon.ico" />
+    <title>&#6158; Amonze | Owned</title>
+
+    <style>
+        .item_img{
+            height: 200px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        {% for item in items %}
+        <img class="item_img" src="/media/{{ item.item.item_image }}">
+        <p>Transaction: {{ item.transaction }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>
