@@ -9,20 +9,209 @@
     <title>&#6158; Amonze | Owned</title>
 
     <style>
-        .item_img {
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100%;
+        }
+
+        .header {
+            margin-top: 2vh;
+        }
+
+        h2{
+            color: rgba(255, 255, 255, 1);
+            text-align: center;
+            font-size: 2.6em;
+            margin: 20px 0px;
+            text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
+        }
+
+        .back_button {
+            font-size: 2vh;
+            text-decoration: none;
+            color: white;
+            margin-left: 2vh;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .items {
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            column-count: 2;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .item {
+            display: flex;
+            background-color: rgba(255, 255, 255, 1);
+            margin: 20px 10px;
+            border-radius: 20px;
+            overflow: hidden;
+            width: 450px;
+        }
+
+        .item_name{
+            font-size: 24px;
+            margin-left: 20px;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        .item_detail{
+            width: 100%;
+            height: 100%;
+        }
+
+        .item_transaction{
+            text-align: end;
+            font-size: 16px;
+            font-weight: 500;
+            margin-right: 20px;
+        }
+
+        .item_quantity{
+            text-align: end;
+            font-size: 16px;
+            font-weight: 500;
+            margin-right: 20px;
+        }
+
+        img {
             height: 200px;
+        }
+
+        .item_detail {
+            color: rgba(0, 0, 0, 1);
+        }
+
+        .paginator{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .paginator a{
+            font-size: 20px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+
+        .paginator a:hover{
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .background {
+            position: absolute;
+            width: 24vh;
+            height: 56vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 15vh;
+            left: 20vw;
+        }
+
+        .background1 {
+            position: absolute;
+            width: 18vh;
+            height: 60vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 10vh;
+            left: 50vw;
+            transform: rotate(20deg);
+        }
+
+        @media only screen and (max-width:700px) {
+            img{
+                height: 140px;
+            }
+
+            h2{
+                font-size: 2.2em;
+            }
+
+            .back_button{
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .container{
+                margin-top: 30px;
+            }
+
+            .item{
+                margin: 10px;
+            }
+
+            .item_name{
+                font-size: 20px;
+                margin-bottom: 20px;
+                margin-left: 10px;
+            }
+
+            .item_transaction{
+                font-size: 14px;
+                margin-right: 15px;
+            }
+
+            .item_quantity{
+                font-size: 14px;
+                margin-right: 15px;
+            }
+
         }
     </style>
 </head>
 
 <body>
+    <div class="header">
+        <div class="header_wrapper">
+            <a class="back_button" href="{% url 'marketplace' %}">Back</a>
+        </div>
+    </div>
+    <div>
+        <h2>Owned Items</h2>
+    </div>
+    <img class="background" src="/media/images/banner.jpg" alt="banner" />
+    <img class="background1" src="/media/images/banner2.jpg" alt="banner" />
     <div class="container">
         <div class="items">
             {% for item in items %}
-            <img class="item_img" src="/media/{{ item.item.item_image }}">
-            <p>Transaction: {{ item.transaction }}</p>
-            <p>Quantity: {{ item.quantity }}</p>
+            <div class="item">
+
+                <img src="/media/{{ item.item.item_image }}">
+
+                <div class="item_detail">
+                    <p class="item_name">{{ item.item.item_name }}</p>
+                    <p class="item_transaction">Transaction: {{ item.transaction }}</p>
+                    <p class="item_quantity">Quantity: {{ item.quantity }}</p>
+                </div>
+            </div>
             {% endfor %}
+        </div>
+        <div class="paginator">
+            {% if items.has_previous %}
+            <a href="{% url 'owned' %}?page={{items.previous_page_number}}" class="pre_page">Previous</a>
+            {% endif %}
+            {% if items.has_next %}
+            <a href="{% url 'owned' %}?page={{items.next_page_number}}" class="next_page">Next</a>
+            {% endif %}
         </div>
     </div>
 

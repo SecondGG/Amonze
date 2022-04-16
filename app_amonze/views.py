@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 import json
 
 
@@ -199,10 +200,17 @@ def owned(request):
         transactions = Transaction.objects.filter(
             customer=customer, complete=True)
         items = TransactionItem.objects.filter(transaction__in=transactions)
+        p = Paginator(items, 12)
+
+        page_num = request.GET.get('page', 1)
+        try:
+            page = p.page(page_num)
+        except:
+            page = p.page(1)
     else:
         items = []
         transactions = {'get_cart_total': 0}
-    context = {'items': items, 'transaction': transactions}
+    context = {'items': page, 'transaction': transactions}
     return render(request, 'owned.html', context)
 
 
