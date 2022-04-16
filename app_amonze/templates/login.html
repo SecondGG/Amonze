@@ -13,17 +13,19 @@
 	<style>
 		body,
 		html {
-			margin: 0;
-			padding: 0;
-			height: 100%;
-			background: #7abecc !important;
+			font-family: 'Poppins', sans-serif;
+			font-weight: 400;
+			background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+			height: 96vh;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
 		}
 
 		.user_card {
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
+			background: rgba(88, 93, 192, 1);
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -32,7 +34,7 @@
 			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 5px;
+			border-radius: 25px;
 
 		}
 
@@ -41,14 +43,20 @@
 		}
 
 		#form-title {
-			color: #fff;
-
+			color: black;
+			font-weight: bold;
+			line-height: 41.59px;
+			background-color: #fff;
+			border-radius: 25px;
+			height: 100%;
+			width: 50%;
+			text-align: center;
 		}
 
 		.login_btn {
 			width: 100%;
-			background: #33ccff !important;
-			color: white !important;
+			background: rgb(255, 255, 255) !important;
+			color: rgb(0, 0, 0) !important;
 		}
 
 		.login_btn:focus {
@@ -61,8 +69,8 @@
 		}
 
 		.input-group-text {
-			background: #f7ba5b !important;
-			color: white !important;
+			background: rgb(255, 255, 255) !important;
+			color: rgba(88, 93, 192, 1) !important;
 			border: 0 !important;
 			border-radius: 0.25rem 0 0 0.25rem !important;
 		}
@@ -74,10 +82,48 @@
 		}
 
 		#messages {
-			background-color: grey;
+			background-color: black;
 			color: #fff;
 			padding: 10px;
 			margin-top: 10px;
+		}
+
+		.form-control {
+			border-radius: 5px;
+		}
+
+		@media only screen and (max-width:1000px) {
+			.user_card {
+				width: 50%;
+				height: 25%;
+				justify-content: space-around;
+			}
+
+			.login_btn {
+				width: 100%;
+			}
+
+			.form-control {
+				width: 100%;
+			}
+
+			.form_container{
+				margin: 0%;
+				align-items: center;
+			}
+
+			#form-title {
+				font-size: 40px;
+				font-family: 'Poppins', sans-serif;
+				font-weight: bold;
+				margin-top: 0;
+				background-color: #fff;
+				border-radius: 25px;
+				width: 50%;
+				height: 100%;
+				text-align: center;
+			}
+			
 		}
 	</style>
 
@@ -94,7 +140,7 @@
 					<h3 id="form-title">LOGIN</h3>
 				</div>
 				<div class="d-flex justify-content-center form_container">
-					
+
 					<form method="POST" action="">
 						{% csrf_token %}
 						<div class="input-group mb-3">
