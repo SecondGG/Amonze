@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="/media/images/favicon.ico" />
     <title>&#6158; Amonze | Checkout</title>
 
+
     <script type="text/javascript">
         var user = '{{request.user}}'
 
@@ -28,6 +29,7 @@
         const csrftoken = getCookie('csrftoken');
     </script>
 
+
     <style>
         img {
             height: 200px;
@@ -47,7 +49,7 @@
             font-family: 'Poppins', sans-serif;
             font-weight: 400;
             background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
-            height: 96vh;
+            height: 100%;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
@@ -120,7 +122,7 @@
 
         .info_label {
             padding-left: 15px;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 40px;
             color: whitesmoke;
         }
@@ -135,26 +137,71 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            height: 100px;
+            height: 160px;
             width: 100%;
-            background-color: #A699EA;
             position: fixed;
             bottom: 0;
+            align-items: center;
         }
 
         button {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
             width: 50%;
-            font-size: 40px;
-            background-color: #A699EA;
+            font-size: 48px;
+            color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(88, 93, 192, 1);
             border: 0;
+            border-right: 5px solid rgba(23, 21, 55, 0.5);
+            height: 100%;
+            cursor: pointer;
+        }
+
+        button:hover {
+            filter: drop-shadow(0px -2px 15px rgba(255, 255, 255, 0.25));
+            color: rgba(255, 255, 255, 1);
         }
 
         .eth_pay {
+            font-size: 48px;
             width: 50%;
-            font-size: 40px;
-            line-height: 100px;
             text-align: center;
+            background-color: rgba(88, 93, 192, 1);
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
             border-left: 4px;
+            padding-top: 44px;
+            padding-bottom: 44px;
+        }
+
+        .eth_pay:hover {
+            filter: drop-shadow(0px -2px 15px rgba(255, 255, 255, 0.25));
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .background {
+            position: absolute;
+            width: 8vh;
+            height: 56vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 15vh;
+            left: 20vw;
+        }
+
+        .background1 {
+            position: absolute;
+            width: 8vh;
+            height: 60vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 10vh;
+            left: 45vw;
+            transform: rotate(20deg);
+        }
+
+        .res_info h2 {
+            font-weight: 600;
         }
 
         @media only screen and (min-width:1000px) {
@@ -218,7 +265,7 @@
 
             .info_label {
                 padding-left: 15px;
-                font-weight: bold;
+                font-weight: 600;
                 font-size: 20px;
                 color: whitesmoke;
             }
@@ -238,23 +285,64 @@
                 position: relative;
                 bottom: auto;
                 border-radius: 25px;
+                margin-top: 50px;
             }
 
             button {
                 width: 50%;
                 font-size: 20px;
-                background-color: #A699EA;
+                background-color: rgba(88, 93, 192, 0.8);
                 border: 0;
-                border-right: 4px;
-                border-radius: 25px;
+                border-right: 3px solid rgba(23, 21, 55, 0.5);
+                border-radius: 25px 0px 0px 25px;
+                font-weight: 600;
+            }
+
+            button:hover {
+                background-color: rgba(88, 93, 192, 1);
+                filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0.25));
             }
 
             .eth_pay {
                 width: 50%;
                 font-size: 20px;
-                line-height: 100px;
                 text-align: center;
+                background-color: rgba(88, 93, 192, 0.8);
                 border-left: 4px;
+                padding-top: 35px;
+                padding-bottom: 35px;
+                border-radius: 0px 25px 25px 0px;
+                font-weight: 600;
+            }
+
+            .eth_pay:hover {
+                background-color: rgba(88, 93, 192, 1);
+                filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0.25));
+            }
+
+            .background {
+                position: absolute;
+                width: 24vh;
+                height: 56vh;
+                filter: blur(200px);
+                z-index: -1;
+                top: 15vh;
+                left: 20vw;
+            }
+
+            .background1 {
+                position: absolute;
+                width: 18vh;
+                height: 60vh;
+                filter: blur(200px);
+                z-index: -1;
+                top: 10vh;
+                left: 50vw;
+                transform: rotate(20deg);
+            }
+
+            .res_info h2 {
+                font-weight: 600;
             }
         }
     </style>
@@ -277,7 +365,8 @@
         </div>
         {% endfor %}
     </div>
-
+    <img class="background" src="/media/images/banner.jpg" alt="banner" />
+    <img class="background1" src="/media/images/banner2.jpg" alt="banner" />
     <div class="res_info">
         <h2 class="address_header">Send To:</h2>
         <div class="info_container">
@@ -294,9 +383,11 @@
         </div>
     </div>
     <div class="paybox">
-        <button id="make-payment">Make Payment</button>
-        <a class="eth_pay" href="{% url 'eth_pay' %}">Pay With ETH</a>
+        <button id="make-payment" class="make_payment">Make Payment</button>
+        <a class="eth_pay" href="{% url 'eth_pay' %}">Pay with ETH</a>
     </div>
+
+
     <script type="text/javascript">
 
         document.getElementById('make-payment').addEventListener('click', function (e) {
@@ -337,6 +428,8 @@
                 })
         }
     </script>
+
+
 </body>
 
 </html>
