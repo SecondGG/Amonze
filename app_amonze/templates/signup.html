@@ -1,3 +1,4 @@
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,9 +109,52 @@
             transform: rotate(20deg);
         }
 
+        .google_btn {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+        }
+
+        .google_wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 44px;
+            background-color: rgba(91, 169, 255, 0.8);
+            width: 280px;
+            border-radius: 40px;
+        }
+
+        .google_wrapper:hover {
+            background-color: rgba(91, 169, 255, 1);
+            box-shadow: rgba(91, 169, 255, 0.5) 0px 0px 10px 0px;
+        }
+
+        .google_logo {
+            height: 30px;
+
+        }
+
+        .google_btn a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 1);
+            padding: 4px 20px;
+            padding-right: 0px;
+            font-size: 18px;
+        }
+
+        p {
+            text-align: center;
+            color: rgba(255, 255, 255, 1);
+        }
+
         @media only screen and (max-width:700px) {
             h1 {
                 font-size: 2em;
+                margin: 20px 0;
             }
 
             .back_button {
@@ -141,6 +185,26 @@
 
             .submit {
                 width: 250px;
+            }
+
+            .google_wrapper {
+                height: 38px;
+                width: 240px;
+                border-radius: 40px;
+            }
+
+            .google_logo {
+                height: 24px;
+            }
+
+            .google_btn a {
+                padding: 4px 20px;
+                padding-right: 0px;
+                font-size: 16px;
+            }
+
+            p {
+                font-size: 12px;
             }
 
         }
@@ -178,6 +242,14 @@
             {{form.errors}}
             <div class="submit_btn">
                 <input type="submit" class="submit" name="Create User" value="Continue">
+            </div>
+            <br>
+            <p>or</p>
+            <div class="google_btn">
+                <div class="google_wrapper">
+                    <img class='google_logo' src="/media/images/google.png">
+                    <a href="{% provider_login_url 'google' method = 'oauth2' %}">Sign up with Google</a>
+                </div>
             </div>
         </form>
     </div>

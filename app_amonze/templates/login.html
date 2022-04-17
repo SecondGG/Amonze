@@ -1,3 +1,4 @@
+{% load socialaccount %}
 <!DOCTYPE html>
 <html>
 
@@ -148,6 +149,48 @@
 			transform: rotate(20deg);
 		}
 
+		.google_btn {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+        }
+
+        .google_wrapper{
+            display: flex;
+            flex-wrap:wrap ;
+            justify-content: center;
+            align-items: center;
+            height: 44px;
+            background-color: rgba(91, 169, 255, 0.8);
+            width: 280px;
+            border-radius: 40px;
+        }
+
+        .google_wrapper:hover{
+            background-color: rgba(91, 169, 255, 1);
+			box-shadow: rgba(91, 169, 255, 0.5) 0px 0px 10px 0px;
+        }   
+
+        .google_logo {
+            height: 30px;
+
+        }
+
+        .google_btn a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 1);
+            padding: 4px 20px;
+            padding-right: 0px;
+            font-size: 18px;
+        }
+
+        p {
+            text-align: center;
+            color: rgba(255, 255, 255, 1);
+        }
+
 		@media only screen and (max-width:700px) {
 			h1 {
 				font-size: 2.2em;
@@ -189,6 +232,27 @@
 				margin: 0%;
 				align-items: center;
 			}
+
+			.google_wrapper {
+                height: 38px;
+                width: 200px;
+                border-radius: 40px;
+            }
+
+            .google_logo {
+                height: 24px;
+            }
+
+            .google_btn a {
+                padding: 4px 20px;
+                padding-right: 0px;
+				padding-left: 10px;
+                font-size: 14px;
+            }
+
+            p {
+                font-size: 12px;
+            }
 
 		}
 	</style>
@@ -232,6 +296,14 @@
 						<div class="login_container">
 							<input class="btn login_btn" type="submit" value="Login">
 						</div>
+						<br>
+						<p>or</p>
+						<div class="google_btn">
+							<div class="google_wrapper">
+								<img class='google_logo' src="/media/images/google.png">
+								<a href="{% provider_login_url 'google' method = 'oauth2' %}">Sign in with Google</a>
+							</div>
+						</div>
 					</form>
 				</div>
 
@@ -239,17 +311,6 @@
 				<p id="messages">{{message}}</p>
 				{% endfor %}
 
-				<div class="google_login">
-					<div class="google_login_container">
-						<!--
-							#
-							#
-							Google Auth
-							#
-							#
-						-->
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
