@@ -216,6 +216,15 @@
             transform: rotate(20deg);
         }
 
+        .disclaimer {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            margin-right: 20px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+
         @media only screen and (max-width:700px) {
             .container {
                 padding-left: 5%;
@@ -303,7 +312,10 @@
             .background1 {
                 width: 50%;
                 height: auto;
+            }
 
+            .disclaimer {
+                visibility: hidden;
             }
 
         }
@@ -337,18 +349,17 @@
             <div class="col-2">
                 <img src="media/images/home_hero.png" class="home_hero">
                 <div class="color-box"></div>
-                <!-- <div class="img2">
-                    <img src="media/images/2.png">
-                </div>
-                <div class="img3">
-                    <img src="media/images/3.png">-->
             </div>
         </div>
     </div>
+    <div>
+        <p class="disclaimer">*This website is only for study purpose in DSI202, Thammasat University. Real Doggos NFT
+            are from @VaxxedDoggos.</p>
     </div>
+
     <script>
 
-        var user = '{{request.user}}'   
+        var user = '{{request.user}}'
         var loginbtn = document.getElementById('loginbtn')
         var signupbtn = document.getElementById('signupbtn')
 

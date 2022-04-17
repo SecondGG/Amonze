@@ -38,13 +38,20 @@
             background-attachment: fixed;
         }
 
+        .back_button {
+            font-size: 2vh;
+            text-decoration: none;
+            color: white;
+            margin-left: 2vh;
+        }
+
         .cart_header {
             color: white;
             text-align: center;
             font-weight: 600;
-            font-size: 40px;
+            font-size: 32px;
             text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
-            margin-top: 40px;
+            margin-top: 20px;
             margin-bottom: 10px;
         }
 
@@ -155,7 +162,7 @@
 
         @media only screen and (min-width:1024px) {
             .cart_header {
-                font-size: 30px;
+                font-size: 26px;
             }
 
             .cart_container {
@@ -218,6 +225,13 @@
 </head>
 
 <body>
+
+    <div class="header">
+        <div class="header_wrapper">
+            <a class="back_button" href="{% url 'marketplace' %}">Back</a>
+        </div>
+    </div>
+
     <div class="cart_header">
         <h1>My Shopping Cart</h1>
     </div>

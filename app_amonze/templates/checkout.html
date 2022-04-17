@@ -54,6 +54,13 @@
             background-attachment: fixed;
         }
 
+        .back_button {
+            font-size: 2vh;
+            text-decoration: none;
+            color: white;
+            margin-left: 2vh;
+        }
+
 
         .checkout_container {
             padding-top: 20px;
@@ -348,6 +355,11 @@
 </head>
 
 <body>
+    <div class="header">
+        <div class="header_wrapper">
+            <a class="back_button" href="{% url 'cart' %}">Back</a>
+        </div>
+    </div>
     <div class="checkout_header">
         <h2> Payment </h2>
     </div>
@@ -358,8 +370,8 @@
             <img class="item_img" src="/media/{{ item.item.item_image }}">
             <div class="item_detail">
                 <h3 class="item_name">{{item.item.item_name}}</h3>
-                <p class="item_quantity">จำนวน : {{item.quantity}} ตัว</p>
-                <p class="item_total">ราคารวม : ${{item.get_total|floatformat:2}}</p>
+                <p class="item_quantity">Quantity : {{item.quantity}}</p>
+                <p class="item_total">Total : ${{item.get_total|floatformat:2}}</p>
             </div>
         </div>
         {% endfor %}
