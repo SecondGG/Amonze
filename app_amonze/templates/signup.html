@@ -2,22 +2,188 @@
 <html lang="en">
 
 <head>
-    <style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="shortcut icon" href="/media/images/favicon.ico" />
+    <title>&#6158; Amonze | Sign Up</title>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            background-image: linear-gradient(to top left, rgba(23, 21, 55, 1), rgba(0, 0, 0, 1));
+            height: 96vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .header {
+            margin-top: 2vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: rgba(255, 255, 255, 1);
+            font-size: 3em;
+            margin: 20px 0px;
+            text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
+            font-weight: 600;
+            margin: 40px 0;
+        }
+
+        .back_button {
+            font-size: 2vh;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            margin-left: 2vh;
+        }
+
+        .back_button:hover {
+            color: rgba(255, 255, 255, 1);
+            text-decoration: none;
+        }
+
+        .form_container {
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+        }
+
+        .row {
+            margin-bottom: 30px;
+            border-radius: 20px;
+        }
+
+        input {
+            font-family: 'Poppins', sans-serif;
+            border: 0;
+            border-radius: 40px;
+            padding: 10px 25px;
+            font-size: 20px;
+            width: 350px;
+        }
+
+        .submit_btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 70px;
+        }
+
+        .submit {
+            cursor: pointer;
+            border: 0;
+            background-color: rgba(88, 93, 192, 0.7);
+            border: 1px solid rgba(88, 93, 192, 0.85);
+            color: rgba(255, 255, 255, 0.9);
+            width: 350px;
+        }
+
+        .submit:hover {
+            background-color: rgba(88, 93, 192, 0.9);
+            border: 1px solid rgba(88, 93, 192, 0.95);
+            color: rgba(255, 255, 255, 1);
+            box-shadow: rgba(88, 93, 192, 0.5) 0px 0px 20px 0px;
+        }
+
+        .background {
+            position: absolute;
+            width: 24vh;
+            height: 56vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 15vh;
+            left: 20vw;
+        }
+
+        .background1 {
+            position: absolute;
+            width: 18vh;
+            height: 60vh;
+            filter: blur(200px);
+            z-index: -1;
+            top: 10vh;
+            left: 50vw;
+            transform: rotate(20deg);
+        }
+
+        @media only screen and (max-width:700px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .back_button {
+                font-size: 16px;
+                font-weight: 500;
+            }
+
+            .form_container {
+                margin-top: 50px;
+            }
+
+            .row {
+                margin-bottom: 20px;
+                border-radius: 20px;
+            }
+
+            input {
+                border: 0;
+                border-radius: 40px;
+                padding: 7px 20px;
+                font-size: 16px;
+                width: 250px;
+            }
+
+            .submit_btn {
+                margin-top: 50px;
+            }
+
+            .submit {
+                width: 250px;
+            }
+
+        }
     </style>
 
 </head>
 
 <body>
-    <form method="POST" action="">
-        {% for field in form %}
-        {% csrf_token %}
-        {{ field.label }}
-        {{ field }}
-        {% endfor %}
-        {{form.errors}}
-        <input type="submit" name="Create User" value="Continue">
-    </form>
+    <div class="header">
+        <div class="header_wrapper">
+            <a class="back_button" href="{% url 'home' %}">Back</a>
+        </div>
+    </div>
+    <h1>Register to adopt your Doggos!</h1>
+    <div class="form_container">
+        <form method="POST" action="">
+
+            {% csrf_token %}
+            <div class="row">
+                <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username"
+                    placeholder="Username">
+            </div>
+            <div class="row">
+                <input type="email" name="email" maxlength="60" required="" id="id_email" placeholder="Email">
+            </div>
+            <div class="row">
+                <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1"
+                    placeholder="Password">
+            </div>
+            <div class="row">
+                <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2"
+                    placeholder="Confirm Password">
+            </div>
+
+            {{form.errors}}
+            <div class="submit_btn">
+                <input type="submit" class="submit" name="Create User" value="Continue">
+            </div>
+        </form>
+    </div>
+    <img class="background" src="/media/images/banner.jpg" alt="banner" />
+    <img class="background1" src="/media/images/banner2.jpg" alt="banner" />
+
 </body>
 
 </html>

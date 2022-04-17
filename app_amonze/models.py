@@ -10,7 +10,7 @@ class Customer (models.Model):
     firstname = models.CharField(max_length=50, null=True, blank=True)
     lastname = models.CharField(max_length=50, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
+    email = models.EmailField(null=True, blank=True, unique=True)
     address = models.CharField(max_length=300,null=True, blank=True)
     postcode = models.CharField(max_length=5,null=True, blank=True)
     
