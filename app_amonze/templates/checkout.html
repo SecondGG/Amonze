@@ -163,14 +163,14 @@
             position: fixed;
             bottom: 0;
             left: 0;
-            align-items: center;
+            align-items:stretch;
         }
 
         button {
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
             width: 50%;
-            font-size: 48px;
+            font-size: 50px;
             color: rgba(255, 255, 255, 0.9);
             background-color: rgba(88, 93, 192, 1);
             border: 0;
@@ -320,22 +320,25 @@
                 flex-wrap: wrap;
                 justify-content: space-between;
                 height: 100px;
-                width: 30%;
+                width: 500px;
                 position: relative;
-                bottom: auto;
+                bottom: 5vh;
+                left: 48vw;
                 border-radius: 25px;
                 margin-top: 50px;
                 padding-left: 50px;
+                align-items: stretch;
             }
 
             button {
                 width: 50%;
-                font-size: 20px;
+                font-size: 22px;
                 background-color: rgba(88, 93, 192, 0.8);
                 border: 0;
                 border-right: 3px solid rgba(23, 21, 55, 0.5);
                 border-radius: 25px 0px 0px 25px;
                 font-weight: 600;
+                height: 110px;
             }
 
             button:hover {
@@ -400,7 +403,6 @@
     </div>
     <div class="checkout_header">
         <h2> Payment </h2>
-    </div>
     </div>
     <div class="checkout_container">
         {% for item in items %}

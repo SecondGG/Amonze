@@ -1,3 +1,4 @@
+from urllib import response
 from django.shortcuts import render, redirect
 from app_amonze.models import *
 from app_amonze.forms import SignUpForm
@@ -9,7 +10,8 @@ from django.shortcuts import  redirect
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 import json
-from django.contrib import messages
+import urllib.request
+
 
 
 # Create your views here.
@@ -133,12 +135,24 @@ def updateItem(request):
     elif action == 'remove':
         transactionItems.quantity = (transactionItems.quantity - 1)
 
+    detail = {
+        "itemId" : itemId,
+        "aciton" : action,
+        "quantity" : transactionItems.quantity,
+    }
+
+    dictionary = {"detail": detail}
+    json_object = json.dumps(dictionary)
+    print(json_object)
+    response = redirect('marketplace')
+    response.set_cookie('amonze_cart', json_object)
+
     transactionItems.save()
 
     if transactionItems.quantity <= 0:
         transactionItems.delete()
 
-    return JsonResponse('Item was added', safe=False)
+    return response
 
 
 @login_required(login_url='login')
