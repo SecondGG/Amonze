@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app_amonze.models import Customer,Item,Transaction,ShippingAddress,TransactionItem
+from app_amonze.models import *
 
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ['customer_id', 'user', 'firstname','lastname','date_of_birth','email','address','postcode']
@@ -23,8 +23,3 @@ class TransactionItemAdmin(admin.ModelAdmin):
 
 admin.site.register(TransactionItem,TransactionItemAdmin)
 
-class ShippingAddressAdmin(admin.ModelAdmin):
-    list_display = ['transaction_id', 'customer', 'address', 'postcode']
-    # list_editable = ['return_date','cost']
-
-admin.site.register(ShippingAddress,ShippingAddressAdmin)

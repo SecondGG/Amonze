@@ -59,13 +59,3 @@ class TransactionItem(models.Model):
         total = self.item.price * self.quantity
         return total
     
-
-
-class ShippingAddress(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
-    transaction_id  = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True, blank=True)
-    address = models.CharField(max_length=300,null=True)
-    postcode = models.CharField(max_length=5,null=True)
-
-    def __str__(self):
-        return "%s"%(self.address)
