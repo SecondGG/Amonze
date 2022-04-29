@@ -1,9 +1,8 @@
 from urllib import response
 from django.shortcuts import render, redirect
 from app_amonze.models import *
-from app_amonze.forms import SignUpForm
+from app_amonze.forms import *
 from django.contrib import messages
-from app_amonze.forms import  CustomerForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import  redirect
@@ -178,8 +177,9 @@ def owned(request):
         transactions = Transaction.objects.filter(
             customer=customer, complete=True)
         items = TransactionItem.objects.filter(transaction__in=transactions)
-        p = Paginator(items, 12)
 
+        p = Paginator(items, 12)
+        
         page_num = request.GET.get('page', 1)
         try:
             page = p.page(page_num)
@@ -202,3 +202,71 @@ def eth_pay(request):
         transactions = {'get_cart_total':0, 'shipping':False}
     context = {'transaction':transactions}
     return render(request, 'eth_pay.html', context)
+
+
+from django.http import HttpResponse
+from PIL import Image
+import libscrc
+import qrcode
+
+
+def calculate_crc(code):
+    crc = libscrc.ccitt_false(str.encode(code))
+    crc = str(hex(crc))
+    crc = crc[2:].upper()
+    return crc.rjust(4, '0')
+
+
+def gen_code(mobile="", nid="", amount=1.23):
+    code="00020101021153037645802TH29370016A000000677010111"
+    if mobile:
+        tag,value = 1,"0066"+mobile[1:]
+        seller='{:02d}{:02d}{}'.format(tag,len(value), value)
+    elif nid:
+        tag,value = 2,nid
+        seller='{:02d}{:02d}{}'.format(tag,len(value), value)
+    else:
+        raise Exception("Error: gen_code() does not get seller mandatory details")
+    code+=seller
+    tag,value = 54, '{:.2f}'.format(amount)
+    code+='{:02d}{:02d}{}'.format(tag,len(value), value)
+    code+='6304'
+    code+=calculate_crc(code)
+    return code
+
+
+def get_qr(request,mobile="",nid="",amount=""):
+    message="mobile: %s, nid: %s, amount: %s"%(mobile,nid,amount)
+    print( message )
+    code=gen_code(mobile=mobile, amount=float(amount))#scb
+    print(code)
+    img = qrcode.make(code,box_size=4)
+    response = HttpResponse(content_type='image/png')
+    img.save(response, "PNG")
+    return response
+
+@login_required(login_url='login')
+def promptpay(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        transactions = Transaction.objects.get(
+            customer=customer, complete=False)
+        items = TransactionItem.objects.filter(transaction=transactions)
+        form = EvidenceForm(instance=transactions)
+        if request.method == 'POST':
+            form = EvidenceForm(request.POST, request.FILES, instance=transactions)
+            if form.is_valid():
+                form.save()
+    else:
+        items = []
+        transactions = {'get_cart_total':0, 'shipping':False}
+    context = {'transaction':transactions}
+    context={
+        "mobile":"0845552363", #seller's mobile
+        'amount': transactions.get_cart_total*34,
+        'transaction':transactions,
+        'items': items,
+        'form': form,
+    }
+    return render(request, 'promptpay.html', context)
+

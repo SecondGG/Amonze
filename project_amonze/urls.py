@@ -36,7 +36,10 @@ urlpatterns = [
     path('process_order/', views.processOrder, name="process_order"),
     path('owned/', views.owned, name = 'owned'),
     path('eth_pay/', views.eth_pay, name='eth_pay'),
-    path('accounts/profile/', views.profile, name = 'profile')
+    path('accounts/profile/', views.profile, name = 'profile'),
+    path('qr_mobile/<mobile>/<amount>/qr.png', views.get_qr, name='qr'),
+    path('qr_nid/<nid>/<amount>/', views.get_qr, name='qr'),
+    path('checkout/promptpay/', views.promptpay, name= 'promptpay')
 ]
 
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

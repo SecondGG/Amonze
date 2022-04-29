@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/media/images/favicon.ico" />
+    <title>&#6158; Amonze | PromptPay</title>
+
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
+
+    <style>
+        .item_img {
+            height: 40px;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <img src="{% url 'qr' mobile=mobile amount=amount %}">
+    <div class="checkout_container">
+        {% for item in items %}
+        <div class="item_wrapper">
+            <img class="item_img" src="/media/{{ item.item.item_image }}">
+            <div class="item_detail">
+                <p class="item_name">{{item.item.item_name}} <span class="item_quantity">x{{item.quantity}}</span></p>
+                <p class="item_total">Total : ${{item.get_total|floatformat:2}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <p>{{ transaction.get_cart_total }} USD</p>
+    <p>{{ amount }} บาท</p>
+    <p>{{ mobile }} </p>
+    <p>{{ transaction.date_ordered }}</p>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="row">
+            <span class="label">{{ field.label }}:</span>
+            <span class="field">{{ field }}</span>
+        </div>
+        {% endfor %}
+        <input class="submit_button" type="submit" name="Update Information" value="Submit">
+    </form>
+
+    <button id="make-payment" class="make_payment">Make Payment</button>
+
+    <script type="text/javascript">
+
+        document.getElementById('make-payment').addEventListener('click', function (e) {
+            submitFormData()
+        })
+
+        var total = '{{ transaction.get_cart_total }}'
+
+        function submitFormData(total) {
+            var total = '{{ transaction.get_cart_total }}'
+            console.log('total :', total)
+
+            var userFormData = {
+                'total': total,
+            }
+
+            if (user == 'AnonymousUser') {
+                console.log('Not logged in')
+            }
+
+            var url = '/process_order/'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({ 'form': userFormData })
+            })
+                .then((response) =>
+                    response.json()
+                )
+
+                .then((data) => {
+                    console.log('Success: ', data);
+                    alert('Transaction completed');
+                    window.location.href = "{% url 'marketplace' %}";
+                })
+        }
+    </script>
+
+
+</body>
+
+</html>

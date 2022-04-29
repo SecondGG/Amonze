@@ -4,7 +4,7 @@ import imp
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from app_amonze.models import Customer
+from app_amonze.models import *
 from django.forms import ModelForm
 import datetime
 
@@ -14,14 +14,14 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'email')
 
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = Customer
-        fields = ['profile_pic', 'firstname','lastname','date_of_birth','email','address','postcode']
-
 class CustomerForm(ModelForm):
     profile_pic = forms.ImageField(widget=forms.FileInput,)
     class Meta:
         model = Customer
         fields = '__all__'
         exclude = ['user', 'date_of_birth']
+
+class EvidenceForm(ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ('evidence',)

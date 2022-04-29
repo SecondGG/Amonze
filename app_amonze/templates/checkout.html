@@ -164,22 +164,23 @@
             bottom: 0;
             left: 0;
             align-items:stretch;
+            background-color: black;
         }
 
-        button {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            width: 50%;
-            font-size: 50px;
-            color: rgba(255, 255, 255, 0.9);
+        .promptpay {
+            font-size: 48px;
+            width: 49%;
+            text-align: center;
             background-color: rgba(88, 93, 192, 1);
-            border: 0;
-            border-right: 5px solid rgba(23, 21, 55, 0.5);
-            height: 100%;
-            cursor: pointer;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            border-left: 4px;
+            padding-top: 52.5px;
+            padding-bottom: 52.5px;
+            border-right: 9px solid rgba(23, 21, 55, 0.5);
         }
 
-        button:hover {
+        .promptpay:hover {
             filter: drop-shadow(0px -2px 15px rgba(255, 255, 255, 0.25));
             color: rgba(255, 255, 255, 1);
         }
@@ -328,20 +329,26 @@
                 border-radius: 25px;
                 padding-left: 50px;
                 align-items: stretch;
+                background-color: rgba(0, 0, 0, 0);
             }
 
-            button {
-                width: 50%;
-                font-size: 22px;
+            .promptpay {
+                width: 49%;
+                font-size: 20px;
                 background-color: rgba(88, 93, 192, 0.8);
-                border: 0;
                 border-right: 3px solid rgba(23, 21, 55, 0.5);
                 border-radius: 25px 0px 0px 25px;
                 font-weight: 600;
-                height: 110px;
+                padding-top: 38.5px;
+                padding-bottom: 38.5px;
+                text-align: center;
+                align-items: center;
+                text-decoration: none;
+                color: rgba(255, 255, 255, 0.9);
+
             }
 
-            button:hover {
+            .promptpay:hover {
                 background-color: rgba(88, 93, 192, 1);
                 filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0.25));
             }
@@ -435,7 +442,7 @@
         </div>
     </div>
     <div class="paybox">
-        <button id="make-payment" class="make_payment">Make Payment</button>
+        <a class="promptpay" href="{% url 'promptpay' %}">PromptPay</a>
         <a class="eth_pay" href="{% url 'eth_pay' %}">Pay with ETH</a>
     </div>
 

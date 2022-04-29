@@ -34,6 +34,7 @@ class Transaction (models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=True)
+    evidence = evidence = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return "%s"%(self.pk)
@@ -58,4 +59,3 @@ class TransactionItem(models.Model):
     def get_total(self):
         total = self.item.price * self.quantity
         return total
-    
