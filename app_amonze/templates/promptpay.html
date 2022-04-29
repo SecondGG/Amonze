@@ -29,8 +29,32 @@
     </script>
 
     <style>
+        .back_btn {
+            all: unset;
+            cursor: pointer;
+        }
+
         .item_img {
             height: 40px;
+        }
+
+        .item_wrapper {
+            display: flex;
+            align-items: center;
+            border: 1px solid black;
+        }
+
+        .item_detail {
+            border: 1px solid red;
+        }
+
+        .info_box {
+            display: grid;
+            border: 1px solid black;
+        }
+
+        .form_wrapper {
+            border: 1px solid black;
         }
     </style>
 
@@ -38,34 +62,47 @@
 
 
 <body>
-    <img src="{% url 'qr' mobile=mobile amount=amount %}">
-    <div class="checkout_container">
+    <div class="header">
+        <input class="back_btn" type=button value="Back" onClick="javascript:history.go(-1);">
+    </div>
+    <div class="qr_code">
+        <img src="{% url 'qr' mobile=mobile amount=amount %}">
+    </div>
+    <div class="items_container">
         {% for item in items %}
         <div class="item_wrapper">
-            <img class="item_img" src="/media/{{ item.item.item_image }}">
+            <div class="img_wrapper">
+                <img class="item_img" src="/media/{{ item.item.item_image }}">
+            </div>
             <div class="item_detail">
-                <p class="item_name">{{item.item.item_name}} <span class="item_quantity">x{{item.quantity}}</span></p>
+                <p class="item_name">{{item.item.item_name}} <span class="item_quantity">x{{item.quantity}}</span>
+                </p>
                 <p class="item_total">Total : ${{item.get_total|floatformat:2}}</p>
             </div>
         </div>
         {% endfor %}
     </div>
-    <p>{{ transaction.get_cart_total }} USD</p>
-    <p>{{ amount }} บาท</p>
-    <p>{{ mobile }} </p>
-    <p>{{ transaction.date_ordered }}</p>
-    <form method="POST" action="" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% for field in form %}
-        <div class="row">
-            <span class="label">{{ field.label }}:</span>
-            <span class="field">{{ field }}</span>
-        </div>
-        {% endfor %}
-        <input class="submit_button" type="submit" name="Update Information" value="Submit">
-    </form>
+    <div class="info_box">
+        <p>{{ transaction.get_cart_total }} USD</p>
+        <p>{{ amount }} บาท</p>
+        <p>{{ mobile }} </p>
+        <p>{{ transaction.date_ordered }}</p>
+    </div>
+    <div class="form_wrapper">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="row">
+                <span class="label">{{ field.label }}:</span>
+                <input type="file" name="evidence" accept="image/*" id="id_evidence" required=required>
+            </div>
+            {% endfor %}
+            <input class="submit_button" type="submit" name="Update Information" value="Submit">
+        </form>
+    </div>
 
     <button id="make-payment" class="make_payment">Make Payment</button>
+
 
     <script type="text/javascript">
 
