@@ -151,6 +151,7 @@ def updateItem(request):
     if transactionItems.quantity <= 0:
         transactionItems.delete()
 
+    #return JsonResponse('Item was added.', safe=False)
     return response
 
 
